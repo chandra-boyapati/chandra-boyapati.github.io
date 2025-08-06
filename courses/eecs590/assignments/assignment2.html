@@ -1,0 +1,175 @@
+<head>
+<title>EECS 590: Advanced Programming Languages (Winter 2011)</title>
+
+  <style type="text/css">
+    <!--
+
+    a:link    {text-decoration: none; color: #0000E0}
+    a:visited {text-decoration: none; color: #0000E0}
+    a:active  {text-decoration: none; color: #0000E0}
+    a:hover   {text-decoration: none; color: #0096E0}
+
+    cite a:link    {font-style: normal; font-weight: bold; 
+                    text-decoration: none; color: #990000}
+    cite a:visited {font-style: normal; font-weight: bold; 
+                    text-decoration: none; color: #990000}
+    cite           {font-style: normal; font-weight: bold; 
+                    text-decoration: none; color: #990000}
+
+    table.items {
+        border: 0px;
+        background-color: #AAAAFF;
+    }
+
+    table.items tr.header td {
+        text-align: center;
+        background-color: #AAAAFF;
+        font-weight: bold;
+    }
+
+    table.items tr.header2 td {
+        text-align: left;
+        background-color: #CCCCFF;
+        font-weight: bold;
+    }
+
+    table.items tr.header3 td {
+        text-align: left;
+        background-color: #FFCCAA;
+        font-weight: bold;
+    }
+
+    table.items tr td {
+        background-color: #F0F0FF;
+        border: 0px;
+    }
+
+    --> 
+  </style>
+
+</head>
+
+<!--  *****************************************************************   -->
+
+<body bgcolor="#FFFFFF">
+
+<!--  *****************************************************************   -->
+
+<body>
+
+<h1><b>Assignment 2</b></h1>
+
+<!--  *************************************************************   -->
+
+<hr>
+<br>
+<font color=#009900> 
+<b>Due on Feb 10 before lecture.</b> 
+</font>
+
+<br><br>
+
+<font color=#009900> 
+<b>
+
+Email your solutions to bchandra@eecs.umich.edu. 
+
+Preferably, email them as an attachment, with the filename: <i>your_unique_name</i>.zip
+
+</b> 
+</font>
+
+
+<br><br>
+<hr>
+
+
+<!--  *************************************************************   -->
+
+<cite>Problem 1a </cite><br><br>
+
+Consider the language of Featherweight Java discussed in class (Figures
+1, 2, 3 in the 
+<a href="../../papers/Igarashi_FJ.pdf">Featherweight Java paper</a>).
+Your goal for this project is to implement a type checker for Featherweight
+Java.
+
+<br><br>
+
+A partial implementation of a type checker is available from below:
+
+<ul>
+  <li>
+    <a href="./assignment2_fj.zip">
+	fj.zip
+    </a>
+  </li>
+</ul>
+
+The <a href="./assignment2_README.html">README</a> file describes how to build Featherweight Java.
+
+<br><br>
+
+Note that several methods of the type checker are not yet implemented
+properly.  These include the following:
+
+<ul>
+  <li>
+  fj.types.ClassTable.override
+  </li>
+  <li>
+  fj.types.ClassTable.subtype
+  </li>
+  <li>
+  fj.typecheck.TypeChecker.checkProgram
+  </li>
+  <li>
+  fj.typecheck.TypeChecker.checkMethod
+  </li>
+  <li>
+  fj.typecheck.TypeChecker.checkVarTerm
+  </li>
+  <li>
+  fj.typecheck.TypeChecker.checkFieldTerm
+  </li>
+  <li>
+  fj.typecheck.TypeChecker.checkCallTerm
+  </li>
+  <li>
+  fj.typecheck.TypeChecker.checkNewTerm
+  </li>
+  <li>
+  fj.typecheck.TypeChecker.checkCastTerm
+  </li>
+</ul>
+
+Implement the above methods to complete the implementation of a type
+checker for Featherweight Java.  Please submit the source code of your type
+checker.
+
+
+<br><br>
+<hr>
+
+<!--  ***********************************************************   -->
+
+<cite>Problem 1b </cite><br><br>
+
+Your goal for this problem is to test your above type checker
+implementation.  The tests directory supplied to you contains a bare
+minimal test suite.  Write a more comprehensive test suite by writing both
+type-correct and type-incorrect example programs that thoroughly test your
+implementation.  Please submit your test suite.
+
+
+<br><br>
+<hr>
+
+<!--  ***********************************************************   -->
+
+<img src="../../../images/mailbox.gif" alt="[Mail]" align=middle border=OFF>
+<img src="../../../images/email.png" alt="[boyapati dot chandrasekhar at gmail dot com]" align=middle width=225 border=OFF>
+
+<!--  ***********************************************************   -->
+
+</body>

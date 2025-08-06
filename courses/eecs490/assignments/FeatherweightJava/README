@@ -1,0 +1,29 @@
+BUILDING
+
+The build system for FeatherweightJava uses a tool called Ant, from the
+Apache project.  Ant is similar to make, but it uses an XML-based file
+format (the build.xml file in this directory).  You should not have to
+edit this file for your project.
+
+If you don't have ant on your computer, you can download it from
+http://www.eecs.umich.edu/~pdarga/pub/ant.zip.  This archive will unzip
+into a folder called ant; add this folder to your path.
+
+To get a list of the build targets for FeatherweightJava, type "ant -p"
+at the command prompt.  The most important of these is fj-jar; by typing
+"ant fj-jar", or simply "ant", the Java source files are rebuilt and a
+Java archive (Jar) file called fj.jar is created in this directory.
+
+RUNNING
+
+After fj.jar has been built, the typechecker and evaluator can be run by
+typing "java -jar fj.jar tests/empty.fj"; replace tests/empty.fj with any
+test case you wish to run.
+
+SUBMITTING
+
+Typing "ant submit" creates a file named submit.zip in this directory.
+This archive contains your modifications to fj.typecheck.TypeChecker and
+fj.types.ClassTable, and your test suite in the tests/ subdirectory.  No
+other files are submitted, so make sure you limit your editing to those
+files.

@@ -1,0 +1,14 @@
+// paper1.fgj
+
+class List<X extends Object> extends Object {
+	X data;
+	List(X data) { super(); this.data = data; }
+}
+
+class LinkedList<X extends Object> extends List<X> {
+	X moreData;
+	LinkedList(X data, X moreData) { super(data); this.moreData = moreData; }
+}
+
+// this should succeed
+(LinkedList<Object>)new List<Object>(new Object())
