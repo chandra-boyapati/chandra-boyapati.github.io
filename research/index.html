@@ -1,0 +1,573 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" 
+"http://www.w3.org/TR/html4/loose.dtd">
+
+<!--  *************************************************************   -->
+
+<html>
+
+<!--  *************************************************************   -->
+
+<head>
+  <title>Chandrasekhar Boyapati's Research Interests</title>
+
+  <style type="text/css">
+
+      a:link    {text-decoration: none; color: #0000E0}
+      a:visited {text-decoration: none; color: #0000E0}
+      a:active  {text-decoration: none; color: #0000E0}
+      a:hover   {text-decoration: none; color: #0096E0}
+
+      cite a:link    {font-style: normal; font-weight: bold; 
+                      text-decoration: none; color: #990000}
+      cite a:visited {font-style: normal; font-weight: bold; 
+                      text-decoration: none; color: #990000}
+      cite           {font-style: normal; font-weight: bold; 
+                      text-decoration: none; color: #990000}
+
+      body {background-color: #FFFFFF}
+
+  </style>
+
+</head>
+
+<!--  *************************************************************   -->
+
+<body>
+
+<!--  *************************************************************   -->
+
+<h1><a href="../">Chandrasekhar Boyapati's</a> Research Interests</h1>
+
+<!--  *************************************************************   -->
+
+The motivation behind most of my research is the need for reliable
+software.  Software is rapidly becoming the foundation for our entire civil
+infrastructure.  All activities including transportation,
+telecommunications, energy, medicine, and banking rely on the correct
+working of software systems.  As software becomes more pervasive in our
+infrastructure, failures of software can cause more and more damage.  Hence
+the increasing need for reliable software.  Software reliability also has a
+significant impact on our economy.  Studies estimate that bugs in software
+cost businesses worldwide about $175 billion annually.  Making software
+reliable is one of the most important problems facing computer science
+today.  Making software reliable is also one of the most challenging
+problems, primarily because of the inherent complexity of large software
+systems.<br><br>
+
+
+My primary research interest is software reliability, which spans the
+spectrum from programming languages, through program analysis, to software
+engineering.  I am interested in all approaches for helping programmers
+write and maintain reliable software.  I am particularly interested in
+developing programming languages with strong type systems and efficient
+software model checking techniques to improve software
+reliability. <br><br>
+
+
+The following are some of my research projects.  A list of
+my <a href="../publications">publications</a> appears on another
+page. <br><br>
+
+
+<!--  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+<a name="safejava"></a>
+<hr>
+<h2>
+  <img src="images/types.jpg" 
+  alt="[SafeJava]" align=middle width=114 hspace=10 border=OFF>
+
+  SafeJava: A Next Generation Safe Programming Language
+</h2>
+
+Programming languages with strong type systems have significant software
+engineering benefits.  Types can enforce a wide variety of program
+invariants at compile time and catch programming errors early in the
+software development cycle.  Types also serve as documentation that lives
+with the code and is checked throughout the evolution of code. <br><br>
+
+We are developing a new type system for a next generation safe programming
+language.  Our type system improves software reliability by preventing
+several classes of common but potentially serious programming errors.  If a
+program type checks, the system guarantees at compile time that the program
+does not contain any of those errors.  We designed our type system in the
+context of a Java-like object-oriented language; we call the resulting
+language <i>SafeJava</i>.  <br><br>
+
+The SafeJava type system offers significant software engineering
+benefits.  Specifically, SafeJava provides a statically enforceable way of
+specifying object encapsulation and enables local reasoning about program
+correctness; it combines effects clauses with encapsulation to enable
+modular checking of methods in the presence of subtyping; it statically
+prevents data races and deadlocks in multithreaded programs, which are some
+of the most difficult programming errors to detect, reproduce, and
+eliminate; it enables software upgrades in persistent object stores to be
+defined modularly and implemented efficiently; it statically ensures memory
+safety in programs that manage their own memory using regions; and it also
+statically ensures that real-time threads in real-time programs are not
+interrupted for unbounded amounts of time because of garbage collection
+pauses.  Moreover, SafeJava provides all these benefits in a
+unified type system framework, indicating that seemingly different issues
+such as encapsulation, multithreading, software upgrades, and memory
+management have much in common. <br><br>
+
+We have implemented several Java programs in SafeJava.  Our preliminary
+experience suggests that SafeJava is sufficiently expressive to support
+common programming patterns, its type checking is fast and scalable, and it
+requires little programming overhead.  The SafeJava type system thus offers
+a promising approach for improving software reliability. <br><br>
+
+
+<ul>
+
+  <li>
+    <cite><a href="../publications/lctes07.pdf">
+      A Type System for Preventing Data Races and Deadlocks in the Java Virtual Machine Language
+    </a></cite><br>
+    Pratibha Permandla, Michael Roberson, Chandrasekhar Boyapati. <br>
+    ACM Conference on Languages, Compilers, and Tools for Embedded Systems<br>
+    (<a href="http://www.acm.org/sigs/sigplan/lctes.htm"><i>LCTES 2007</i></a>),
+    San Diego, California, June 2007.
+    [&nbsp;<a href="../publications/lctes07.ps">PostScript</a>&nbsp;|
+     &nbsp;<a href="../publications/lctes07.pdf">PDF</a>&nbsp;]<br>
+    The slides from the conference presentation are also available.
+    [&nbsp;<a href="../publications/lctes07_talk.ppt">PowerPoint</a>&nbsp;]<br><br><br>
+  </li>
+
+  <li>
+    <cite><a href="../publications/phd.pdf">
+      SafeJava: A Unified Type System for Safe Programming
+    </a></cite><br>
+    Chandrasekhar Boyapati. <br>
+    Ph.D. Thesis, Electrical Engineering and Computer Science, MIT, February 2004.
+    [&nbsp;<a href="../publications/phd.ps">PostScript</a>&nbsp;|
+     &nbsp;<a href="../publications/phd.pdf">PDF</a>&nbsp;]<br><br><br>
+  </li>
+
+  <li>
+    <cite><a href="../publications/oopsla03.pdf">
+    Lazy Modular Upgrades in Persistent Object Stores      
+    </a></cite><br>
+    Chandrasekhar Boyapati, Barbara Liskov, Liuba Shrira, Chuang-Hue Moh, Steven Richman.<br>
+    ACM Conference on Object-Oriented Programming, Systems, Languages, and Applications<br>
+    (<a href="http://oopsla.acm.org"><i>OOPSLA 2003</i></a>),
+    Anaheim, California, October 2003.
+    [&nbsp;<a href="../publications/oopsla03.ps">PostScript</a>&nbsp;|
+     &nbsp;<a href="../publications/oopsla03.pdf">PDF</a>&nbsp;]<br>
+    The slides from the conference presentation are also available.
+    [&nbsp;<a href="../publications/oopsla03_talk.ppt">PowerPoint</a>&nbsp|
+     &nbsp;<a href="../publications/oopsla03_talk.pdf">PDF</a>&nbsp;]<br><br><br>
+  </li>
+
+  <li>
+    <cite><a href="../publications/iwaco03.pdf">
+      Safe Runtime Downcasts With Ownership Types
+    </a></cite><br>
+    Chandrasekhar Boyapati, Robert Lee, Martin Rinard.<br>
+    ECOOP International Workshop on Aliasing, Confinement and Ownership 
+    in Object-Oriented Programming<br>
+    (<a href="http://www.cs.uu.nl/~dave/iwaco/"><i>IWACO 2003</i></a>),
+    Darmstadt, Germany, July 2003.
+    [&nbsp;<a href="../publications/iwaco03.ps">PostScript</a>&nbsp;|
+     &nbsp;<a href="../publications/iwaco03.pdf">PDF</a>&nbsp;]<br><br><br>
+  </li>
+
+  <li>
+    <cite><a href="../publications/pldi03.pdf">
+      Ownership Types for Safe Region-Based Memory Management in Real-Time Java
+    </a></cite><br>
+    Chandrasekhar Boyapati, Alexandru Salcianu, William Beebee, Martin Rinard.<br>
+    ACM Conference on Programming Language Design and Implementation<br>
+    (<a href="http://www.acm.org/sigplan/pldi.htm"><i>PLDI 2003</i></a>),
+    San Diego, California, June 2003.
+    [&nbsp;<a href="../publications/pldi03.ps">PostScript</a>&nbsp;|
+     &nbsp;<a href="../publications/pldi03.pdf">PDF</a>&nbsp;]<br>
+    The slides from the conference presentation are also available.
+    [&nbsp;<a href="../publications/pldi03_talk.ppt">PowerPoint</a>&nbsp|
+     &nbsp;<a href="../publications/pldi03_talk.pdf">PDF</a>&nbsp;]<br><br><br>
+  </li>
+
+  <li>
+    <cite><a href="../publications/popl03.pdf">
+      Ownership Types for Object Encapsulation
+    </a></cite><br>
+    Chandrasekhar Boyapati, Barbara Liskov, Liuba Shrira.<br>
+    ACM Symposium on Principles of Programming Languages<br>
+    (<a href="http://www.acm.org/sigplan/popl.htm"><i>POPL 2003</i></a>),
+    New Orleans, Louisiana, January 2003.
+    [&nbsp;<a href="../publications/popl03.ps">PostScript</a>&nbsp;|
+     &nbsp;<a href="../publications/popl03.pdf">PDF</a>&nbsp;]<br>
+    The slides from the conference presentation are also available.
+    [&nbsp;<a href="../publications/popl03_talk.ppt">PowerPoint</a>&nbsp|
+     &nbsp;<a href="../publications/popl03_talk.pdf">PDF</a>&nbsp;]<br>
+    This is an invited paper.<br><br><br>
+  </li>
+
+  <li>
+    <cite><a href="../publications/oopsla02.pdf">
+      Ownership Types for Safe Programming: Preventing Data Races and Deadlocks
+    </a></cite><br>
+    Chandrasekhar Boyapati, Robert Lee, Martin Rinard.<br>
+    ACM Conference on Object-Oriented Programming, Systems, Languages, and Applications<br> 
+    (<a href="http://oopsla.acm.org"><i>OOPSLA 2002</i></a>),
+    Seattle, Washington, November 2002.
+    [&nbsp;<a href="../publications/oopsla02.ps">PostScript</a>&nbsp;|
+     &nbsp;<a href="../publications/oopsla02.pdf">PDF</a>&nbsp;]<br>
+    The slides from the conference presentation are also available.
+    [&nbsp;<a href="../publications/oopsla02_talk.ppt">PowerPoint</a>&nbsp|
+     &nbsp;<a href="../publications/oopsla02_talk.pdf">PDF</a>&nbsp;]<br>
+    Also here are the slides from my job talk.
+    [&nbsp;<a href="../publications/job_talk.ppt">PowerPoint</a>&nbsp|
+     &nbsp;<a href="../publications/job_talk.pdf">PDF</a>&nbsp;]<br><br><br>
+  </li>
+
+  <li>
+    <cite><a href="../publications/oopsla01.pdf">
+      A Parameterized Type System for Race-Free Java Programs
+    </a></cite><br>
+    Chandrasekhar Boyapati and Martin Rinard.<br>
+    ACM Conference on Object-Oriented Programming, Systems, Languages, and Applications<br> 
+    (<a href="http://oopsla.acm.org"><i>OOPSLA 2001</i></a>),
+    Tampa, Florida, October 2001.
+    [&nbsp;<a href="../publications/oopsla01.ps">PostScript</a>&nbsp;|
+     &nbsp;<a href="../publications/oopsla01.pdf">PDF</a>&nbsp;]<br>
+    The slides from the conference presentation are also available.
+    [&nbsp;<a href="../publications/oopsla01_talk.ppt">PowerPoint</a>&nbsp|
+     &nbsp;<a href="../publications/oopsla01_talk.pdf">PDF</a>&nbsp;]<br><br><br>
+  </li>
+
+</ul>
+
+<!--  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+<a name="glassbox"></a>
+<hr>
+<h2>
+  <img src="images/glassbox.jpg"
+  alt="[Glass Box]" align=middle width=140 border=OFF>
+
+  Glass Box Software Model Checking
+</h2>
+
+Software model checking is a formal verification technique that
+exhaustively tests a program on all possible inputs (sometimes up to a
+given size) to handle input nondeterminism and on all possible
+nondeterministic schedules to handle scheduling nondeterminism.  Software
+model checking requires significantly less human effort compared to
+traditional formal verification techniques that rely on theorem provers.
+However, it is difficult to scale software model checking to check large
+programs and complex properties because of the exhaustive nature of the
+search and the consequent state space explosion.  Handling the state space
+explosion problem is thus the central challenge in software model checking
+research. <br><br>
+
+We are working on novel programming language and program analysis
+techniques that significantly reduce the state space of a software model
+checker.  Our approach, that we call the <i>glass box</i> approach to
+software model checking, identifies similarities in the state space of a
+software model checker and safely prunes away large portions of the state
+space.  Preliminary results show orders of magnitude improvement over
+previous approaches.  We believe that our glass box approach can make
+software model checking more efficient and scalable, and thus enable
+checking of much larger programs and complex program properties than
+currently possible. <br><br>
+
+
+<ul>
+
+  <li>
+    <cite><a href="../publications/fse12.pdf">
+      ACM SIGSOFT Impact Paper Award 2012: Systematic Software Testing: The Korat Approach
+    </a></cite><br>
+    Chandrasekhar Boyapati, Sarfraz Khurshid, Darko Marinov. <br>
+    ACM Symposium on Foundations of Software Engineering<br>
+    (<a href="http://sigsoft.org/fse20"><i>FSE 2012</i></a>),
+    Cary, North Carolina, November 2012.
+    [&nbsp;<a href="../publications/fse12.ps">PostScript</a>&nbsp;|
+     &nbsp;<a href="../publications/fse12.pdf">PDF</a>&nbsp;]<br>
+    The slides from the conference <a href="http://www.sigsoft.org/fse20/keynote.html">keynote</a> presentation are also available.
+    [&nbsp;<a href="../publications/fse12_talk.ppt">PowerPoint</a>&nbsp;]<br><br><br>
+  </li>
+
+  <li>
+    <cite><a href="../publications/roberson.pdf">
+      Glass Box Software Model Checking
+    </a></cite><br>
+    Michael Roberson. <br>
+    Ph.D. Thesis, Electrical Engineering and Computer Science, University of Michigan, May 2011.
+    [&nbsp;<a href="../publications/roberson.ps">PostScript</a>&nbsp;|
+     &nbsp;<a href="../publications/roberson.pdf">PDF</a>&nbsp;]<br><br><br>
+  </li>
+
+  <li>
+    <cite><a href="../publications/oopsla10.pdf">
+      Efficient Modular Glass Box Software Model Checking
+    </a></cite><br>
+    Michael Roberson and Chandrasekhar Boyapati. <br>
+    ACM Conference on Object-Oriented Programming, Systems, Languages, and Applications<br>
+    (<a href="http://oopsla.acm.org"><i>OOPSLA 2010</i></a>),
+    Reno/Tahoe, Nevada, October 2010.
+    [&nbsp;<a href="../publications/oopsla10.ps">PostScript</a>&nbsp;|
+     &nbsp;<a href="../publications/oopsla10.pdf">PDF</a>&nbsp;]<br><br><br>
+  </li>
+
+  <li>
+    <cite><a href="../publications/oopsla08.pdf">
+      Efficient Software Model Checking of Soundness of Type Systems
+    </a></cite><br>
+    Michael Roberson, Melanie Harries, Paul Darga, Chandrasekhar Boyapati. <br>
+    ACM Conference on Object-Oriented Programming, Systems, Languages, and Applications<br>
+    (<a href="http://oopsla.acm.org"><i>OOPSLA 2008</i></a>),
+    Nashville, Tennessee, October 2008.
+    [&nbsp;<a href="../publications/oopsla08.ps">PostScript</a>&nbsp;|
+     &nbsp;<a href="../publications/oopsla08.pdf">PDF</a>&nbsp;]<br>
+    The slides from the conference presentation are also available.
+    [&nbsp;<a href="../publications/oopsla08_talk.ppt">PowerPoint</a>&nbsp;]<br><br><br>
+  </li>
+
+  <li>
+    <cite><a href="../publications/oopsla06.pdf">
+      Efficient Software Model Checking of Data Structure Properties
+    </a></cite><br>
+    Paul Darga and Chandrasekhar Boyapati. <br>
+    ACM Conference on Object-Oriented Programming, Systems, Languages, and Applications<br>
+    (<a href="http://oopsla.acm.org"><i>OOPSLA 2006</i></a>),
+    Portland, Oregon, October 2006.
+    [&nbsp;<a href="../publications/oopsla06.ps">PostScript</a>&nbsp;|
+     &nbsp;<a href="../publications/oopsla06.pdf">PDF</a>&nbsp;]<br>
+    The slides from the conference presentation are also available.
+    [&nbsp;<a href="../publications/oopsla06_talk.ppt">PowerPoint</a>&nbsp;]<br><br><br>
+  </li>
+
+  <li>
+    <cite><a href="../publications/issta02.pdf">
+      Korat: Automated Testing Based on Java Predicates
+    </a></cite><br>
+    Chandrasekhar Boyapati, Sarfraz Khurshid, Darko Marinov.<br>
+    ACM International Symposium on Software Testing and Analysis<br>
+    (<a href="http://www.iei.pi.cnr.it/ISSTA2002"><i>ISSTA 2002</i></a>),
+    Rome, Italy, July 2002.
+    [&nbsp;<a href="../publications/issta02.ps">PostScript</a>&nbsp;|
+     &nbsp;<a href="../publications/issta02.pdf">PDF</a>&nbsp;]<br>
+    The slides from the conference presentation are also available.
+    [&nbsp;<a href="../publications/issta02_talk.ppt">PowerPoint</a>&nbsp|
+     &nbsp;<a href="../publications/issta02_talk.pdf">PDF</a>&nbsp;]<br>
+    This paper received an <b>ACM SIGSOFT Distinguished Paper Award</b>.<br>
+    This paper also received an <b>ACM SIGSOFT Impact Paper Award</b> in 2012.<br><br><br>
+  </li>
+
+</ul>
+
+<!--  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+<br>
+<div style="color:#000000;background-color:#CCCCCC">
+<hr>
+<center>
+<h2>Past Projects</h2>
+</center>
+<hr>
+</div>
+<br><br>
+
+<!--  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+<h2>
+  <img src="images/thor.gif"
+  alt="[Thor]" align=middle width=100 hspace=10 border=OFF>
+  Thor: A Distributed Object-Oriented Database System
+</h2>
+
+Object-oriented databases provide a simple yet powerful programming model
+that allows applications to store objects reliably so that they can be used
+again later and shared with other applications.  For my Master's thesis, I
+designed, implemented, and evaluated the performance of a distributed Java
+Persistent Store called JPS. JPS is built on top of the Thor
+object-oriented database. <br><br>
+
+JPS provides several advantages over other persistent Java systems. Unlike
+most of other persistent Java systems, JPS is distributed and it allows
+multiple clients to simultaneously access the object store. JPS is built to
+be used over a wide area network and scales well with large databases. JPS
+provides a very reliable and highly available storage. JPS also offers
+significantly better performance for many important types of
+workloads. <br><br>
+
+<ul>
+
+  <li>
+    <cite><a href="../publications/sm.pdf">
+      JPS: A Distributed Persistent Java System 
+    </a></cite><br>
+    Chandrasekhar Boyapati. <br>
+    S.M. Thesis, Electrical Engineering and Computer Science, MIT, September 1998.
+    [&nbsp;<a href="../publications/sm.ps">PostScript</a>&nbsp;|
+     &nbsp;<a href="../publications/sm.pdf">PDF</a>&nbsp;]<br><br><br>
+  </li>
+
+</ul>
+
+More information on the Thor project can be found
+<a href="http://www.pmg.lcs.mit.edu/thor">here</a>. <br><br>
+
+<!--  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+<hr>
+<h2>
+  <img src="images/upgrades.jpg" 
+  alt="[Upgrades]" align=middle width=141 hspace=10 border=OFF>
+
+  Software Upgrades
+</h2>
+
+Long-lived software systems need upgrades to improve implementations, to
+correct errors, or even to change interfaces in the face of changing
+application requirements.  Providing a satisfactory solution for upgrades
+in persistent object stores has been a long-standing challenge. <br><br>
+
+We have developed a novel mechanism for upgrading objects in a persistent
+object store.  Our mechanism is expressive, supporting a rich set of
+upgrades; it is efficient and does not stop application access to
+persistent objects while running an upgrade; it avoids storing multiple
+copies of the objects; yet it provides good semantics.  Our system uses a
+variant of ownership types to ensure that the code for upgrading objects
+only observes interfaces and invariants that existed at the time it was
+written.  This enables modular reasoning about the correctness of
+upgrades.  <br><br>
+
+We have implemented our approach in the Thor object-oriented database.
+Our performance results show that the overhead of our upgrade 
+infrastructure is low. <br><br>
+
+<ul>
+
+  <li>
+    <cite><a href="../publications/oopsla03.pdf">
+    Lazy Modular Upgrades in Persistent Object Stores      
+    </a></cite><br>
+    Chandrasekhar Boyapati, Barbara Liskov, Liuba Shrira, Chuang-Hue Moh, Steven Richman.<br>
+    ACM Conference on Object-Oriented Programming, Systems, Languages, and Applications<br>
+    (<a href="http://oopsla.acm.org"><i>OOPSLA 2003</i></a>),
+    Anaheim, California, October 2003.
+    [&nbsp;<a href="../publications/oopsla03.ps">PostScript</a>&nbsp;|
+     &nbsp;<a href="../publications/oopsla03.pdf">PDF</a>&nbsp;]<br>
+    The slides from the conference presentation are also available.
+    [&nbsp;<a href="../publications/oopsla03_talk.ppt">PowerPoint</a>&nbsp|
+     &nbsp;<a href="../publications/oopsla03_talk.pdf">PDF</a>&nbsp;]<br><br><br>
+  </li>
+
+</ul>
+
+More information on the software upgrades project can be found
+<a href="http://www.pmg.lcs.mit.edu/upgrades">here</a>. <br><br>
+
+<!--  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+<hr>
+<h2>
+  <img src="images/aspectj.gif"
+  alt="[AspectJ]" align=middle width=100 hspace=10 border=OFF>
+
+  Aspect-Oriented Programming
+</h2>
+
+Aspect-oriented programming (AOP) is a new programming methodology
+that enables the modularization of crosscutting concerns.  AspectJ is
+an extension to Java that supports AOP. <br><br>
+
+I was a summer intern at Xerox PARC in 1999, where I worked with
+Gregor Kiczales on AspectJ.  Specifically, I was involved in the
+design of language constructs that make it possible to write reusable
+aspects as part of aspect libraries.  I also built a rudimentary
+editor and debugger for AspectJ. <br><br>
+
+<ul>
+
+  <li>
+    <cite><a href="../publications/aop.html">
+      Aspect-Oriented Programming
+    </a></cite><br>
+    Gregor Kiczales, John Lamping, Cristina Lopes, James Hugunin, Erik Hilsdale, Chandrasekhar Boyapati.<br>
+    U.S. Patent No. 6,467,086, issued October 2002.
+    [&nbsp;<a href="../publications/aop.html">HTML</a>&nbsp;]<br><br><br>
+  </li>
+
+</ul>
+
+More information on AspectJ can be found
+<a href="http://www.eclipse.org/aspectj">here</a>. <br><br>
+
+
+<!--  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+<hr>
+<h2>
+  <img src="images/tree.jpg"
+  alt="[Data Structures]" align=middle width=100 hspace=10 border=1>
+
+  Worst Case Efficient Data Structures
+</h2>
+
+An efficient <i>amortized</i> data structure is one that ensures that
+the average time per operation spent on processing any sequence of
+operations is small.  Amortized data structures typically have
+non-uniform response times, which makes them unsuitable in many
+important contexts, such as real time systems, parallel programs,
+persistent data structures, and interactive software.  On the other
+hand, an efficient <i>worst case</i> data structure guarantees that
+every operation will be performed quickly. <br><br>
+
+The construction of worst case efficient data structures from
+amortized ones is a fundamental problem which is also of pragmatic
+interest. For my Bachelor's thesis, I solved two different open
+problems in data structures: the implementation of priority queues and
+the implementation of concatenable double ended queues with heap
+order. I eliminated amortization from existing data structures and
+proposed new worst case efficient data structures for these problems.
+<br><br>
+
+<ul>
+
+  <li>
+    <cite><a href="../publications/btech.pdf">
+      Worst Case Efficient Data Structures for Priority Queues and Deques
+      With Heap Order
+    </a></cite><br>
+    Chandrasekhar Boyapati. <br>
+    B.Tech. Thesis, Computer Science and Engineering, IIT Madras, May 1996.
+    [&nbsp;<a href="../publications/btech.ps">PostScript</a>&nbsp;|
+     &nbsp;<a href="../publications/btech.pdf">PDF</a>&nbsp;]<br><br><br>
+  </li>
+
+  <li>
+    <cite><a href="../publications/heap.pdf">
+      Relaxed Fibonacci Heaps: An Alternative to Fibonacci Heaps
+      With Worst Case Rather Than Amortized Time Bounds
+    </a></cite><br>
+    Chandrasekhar Boyapati and C. Pandu Rangan.<br>
+    TR-TCS-95-07, Theoretical Computer Science Laboratory, IIT Madras, November 1995.
+    [&nbsp;<a href="../publications/heap.ps">PostScript</a>&nbsp;|
+     &nbsp;<a href="../publications/heap.pdf">PDF</a>&nbsp;]<br><br><br>
+  </li>
+
+  <li>
+    <cite><a href="../publications/deque.pdf">
+      On O(1) Concatenation of Deques With Heap Order
+    </a></cite><br>
+    Chandrasekhar Boyapati and C. Pandu Rangan.<br>
+    TR-TCS-95-05, Theoretical Computer Science Laboratory, IIT Madras, March 1995.
+    [&nbsp;<a href="../publications/deque.ps">PostScript</a>&nbsp;|
+     &nbsp;<a href="../publications/deque.pdf">PDF</a>&nbsp;]<br><br><br>
+  </li>
+
+</ul>
+
+<!--  *************************************************************   -->
+
+<hr>
+<a href=".."><i>Chandrasekhar Boyapati</i></a>
+
+<!--  *************************************************************   -->
+
+</body>
+</html>

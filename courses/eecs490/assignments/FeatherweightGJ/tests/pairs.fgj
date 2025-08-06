@@ -1,0 +1,25 @@
+// pairs.fgj
+// Generic pair example from the FJ paper
+
+class Pair<X extends Object, Y extends Object>
+	extends Object
+{
+	X fst;
+	Y snd;
+	Pair (X fst, Y snd) {
+		super();
+		this.fst = fst;
+		this.snd = snd;
+	}
+	<Z extends Object> Pair<Z,Y> setfst(Z newfst) {
+		return new Pair<Z,Y>(newfst, this.snd);
+	}
+}
+
+class A extends Object { A() { super(); } }
+class B extends Object { B() { super(); } }
+
+new Pair<A,B>(new A(), new B()).setfst<B>(new B())
+
+// This should evaluate to
+// new Pair<B,B>(new B(), new B())

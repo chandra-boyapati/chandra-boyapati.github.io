@@ -1,0 +1,591 @@
+<head>
+<title>EECS 490: Programming Languages (Fall 2006)</title>
+
+  <style type="text/css">
+    <!--
+
+    a:link    {text-decoration: none; color: #0000E0}
+    a:visited {text-decoration: none; color: #0000E0}
+    a:active  {text-decoration: none; color: #0000E0}
+    a:hover   {text-decoration: none; color: #0096E0}
+
+    cite a:link    {font-style: normal; font-weight: bold; 
+                    text-decoration: none; color: #990000}
+    cite a:visited {font-style: normal; font-weight: bold; 
+                    text-decoration: none; color: #990000}
+    cite           {font-style: normal; font-weight: bold; 
+                    text-decoration: none; color: #990000}
+
+    table.items {
+        border: 0px;
+        background-color: #AAAAFF;
+    }
+
+    table.items tr.header td {
+        text-align: center;
+        background-color: #AAAAFF;
+        font-weight: bold;
+    }
+
+    table.items tr.header2 td {
+        text-align: left;
+        background-color: #CCCCFF;
+        font-weight: bold;
+    }
+
+    table.items tr.header3 td {
+        text-align: left;
+        background-color: #FFCCAA;
+        font-weight: bold;
+    }
+
+    table.items tr td {
+        background-color: #F0F0FF;
+        border: 0px;
+    }
+
+    --> 
+  </style>
+
+</head>
+
+<!--  *****************************************************************   -->
+
+<body bgcolor="#FFFFFF">
+
+<!--  *****************************************************************   -->
+
+<body>
+
+<h1><b>EECS 490: Final Exam</b></h1>
+
+<hr>
+
+<!--  *************************************************************   -->
+
+<br>
+
+<font color=#009900> 
+<b>
+Total time: 2 hours<br>
+Total points: 60
+</b>
+</font>
+
+<br><br>
+
+<font color=#009900> 
+<b>
+This is an open book exam.
+</b>
+</font>
+
+<br><br>
+<hr>
+
+<!--  ***********************************************************   -->
+
+<cite>Problem 1 </cite><br><br>
+
+For the following problems, you may use the function <font
+color=#009900>member?</font> that we studied in class as a helper function.  
+
+The function <font color=#009900>member?</font> is reproduced below:
+
+<br><br>
+
+<font color=#009900>
+                                   (define member?                                                <br>
+&nbsp;&nbsp;                         (lambda (a lat)                                              <br>
+&nbsp;&nbsp;&nbsp;&nbsp;               (cond                                                      <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     ((null? lat) #f)                                         <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     (else (or (eq? (car lat) a) (member? a (cdr lat)))))))
+</font>
+
+
+
+<br><br>
+<hr>
+
+<!--  ***********************************************************   -->
+
+<cite>Problem 1a (3 Points)</cite><br><br>
+
+Write a function <font color=#009900>set?</font>.
+
+The function <font color=#009900>set?</font> takes one argument:
+a list of atoms <i>lat</i>.
+
+<font color=#009900>set?</font> returns true iff no atom occurs more than once in 
+<i>lat</i>; otherwise <font color=#009900>set?</font> returns false.
+
+The following examples illustrate the intended behaviour.
+
+<br><br>
+
+<table border="1"
+
+<tr><th>Input <th>Output
+
+<tr><td> <font color=#009900> (set? '(apples peaches apples plums))   </font>
+    <td> <font color=#009900> #f                                      </font>
+
+<tr><td> <font color=#009900> (set? '(apples peaches pears plums))    </font>
+    <td> <font color=#009900> #t                                      </font>
+
+</table>
+
+
+<br><br>
+<hr>
+
+<!--  ***********************************************************   -->
+
+<cite>Problem 1b (3 Points)</cite><br><br>
+
+Write a function <font color=#009900>makeset</font>.
+
+The function <font color=#009900>makeset</font> takes one argument:
+a list of atoms <i>lat</i>.
+
+<font color=#009900>makeset</font> returns <i>lat</i> with duplicates removed.
+
+The following examples illustrate the intended behaviour.
+
+<br><br>
+
+<table border="1"
+
+<tr><th>Input <th>Output
+
+<tr><td> <font color=#009900> (makeset '(apples peaches apples plums))  </font>
+    <td> <font color=#009900> (apples peaches plums)                    </font>
+
+<tr><td> <font color=#009900> (makeset '(apples peaches pears plums))   </font>
+    <td> <font color=#009900> (apples peaches pears plums)              </font>
+
+<tr><td> <font color=#009900> (makeset '(apple peach pear peach plum apple lemon peach)) </font>
+    <td> <font color=#009900> (apple peach pear plum lemon)                              </font>
+
+</table>
+
+
+<br><br>
+<hr>
+<br><br>
+
+<!--  ***********************************************************   -->
+
+<cite>Problem 1c (3 Points)</cite><br><br>
+
+Write a function <font color=#009900>intersect</font>.
+
+The function <font color=#009900>intersect</font> take two sets
+<i>set1</i> and <i>set2</i> as arguments and returns the intersection
+of the two sets.
+
+
+
+The following example illustrate the intended behaviour.
+
+<br><br>
+
+<table border="1"
+
+<tr><th>Input <th>Output
+
+<tr><td> <font color=#009900> (intersect '(stewed tomatoes and macaroni) '(macaroni and cheese))  </font>
+    <td> <font color=#009900> (macaroni and)                                                      </font>
+
+</table>
+
+
+<br><br>
+<hr>
+
+<!--  ***********************************************************   -->
+
+<cite>Problem 1d (3 Points)</cite><br><br>
+
+Write a function <font color=#009900>intersectall</font>.
+
+The function <font color=#009900>intersectall</font> takes a non-empty
+list of sets <i>l-set</i> as argument and returns the intersection of
+all the sets in the list.
+
+You may use any of the functions you wrote above as helper functions.
+
+The following examples illustrate the intended behaviour.
+
+
+
+<br><br>
+
+<table border="1"
+
+<tr><th>Input <th>Output
+
+<tr><td> <font color=#009900> (intersectall '((a b c) (c a d e) (e f g h a b)))  </font>
+    <td> <font color=#009900> (a)                                                </font>
+
+<tr><td> <font color=#009900> (intersectall '((6 pears and) (3 peaches and 6 peppers) (8 pears and 6 plums)))  </font>
+    <td> <font color=#009900> (6 and)                                                                          </font>
+
+</table>
+
+
+<br><br>
+<hr>
+
+<!--  ***********************************************************   -->
+
+<cite>Problem 2 (8 Points)</cite><br><br>
+
+Recall Church booleans and Church numerals from Chapter 5 of the
+Pierce book.  
+
+<ul>
+<li><font color=#009900> true = \t. \f. t </font></li>
+<li><font color=#009900> false = \t. \f. f </font></li>
+</ul>
+
+<ul>
+<li><font color=#009900> c0 = \s. \z. z </font></li>
+<li><font color=#009900> c1 = \s. \z. s z </font></li>
+<li><font color=#009900> c2 = \s. \z. s(s z) </font></li>
+<li><font color=#009900> c3 = \s. \z. s(s(s z)) </font></li>
+<li><font color=#009900> ... </font></li>
+</ul>
+
+
+Write a combinator <font color=#009900>isodd n</font> that returns
+the Church boolean true if n is an odd number and returns the Church
+boolean false if n is an even number.  You may assume that n is a
+Church numeral.
+
+
+
+<br><br>
+<hr>
+
+<!--  *****************************************************************   -->
+
+<cite>Problem 3</cite><br><br>
+
+Consider the language of boolean and arithmetic expressions discussed in
+class (Figures 3-1 and 3-2 in the Pierce book).  Suppose we add a new
+syntactic form:
+
+<ul>
+
+  <li>
+  <font color=#009900>
+  decrement t by twice t
+  </font>
+  </li>
+
+</ul>
+
+Suppose we also add new evaluation rules:
+
+<br><br><br>
+
+<ul>
+
+  <li>
+  <font color=#009900>
+  t2 ---> t2'<br>
+  ------------------------------------------------------- <br>
+  decrement t1 by twice t2 ---> decrement t1 by twice t2' <br><br>
+  </font> 
+  </li>
+
+  <li>
+  <font color=#009900>
+  decrement t1 by twice 0 ---> t1
+  </font> 
+  </li>
+
+  <li>
+  <font color=#009900>
+  decrement t1 by twice (succ nv1) ---> decrement (pred (pred t1)) by twice nv1
+  </font>
+  </li>
+
+</ul>
+<br>
+<hr>
+
+<!--  ***********************************************************   -->
+
+<cite>Problem 3a (7 Points)</cite><br><br>
+
+Does the termination theorem discussed in class (Theorem 3.5.12 in the
+Pierce book) remain valid for the new language?
+
+<br><br>
+
+If the theorem is no longer valid, then present a counter example.  
+
+If the theorem is still valid but its proof is different, then present the
+new proof.
+
+<br><br>
+<hr>
+
+<!--  ***********************************************************   -->
+
+<cite>Problem 3b (3 Points)</cite><br><br>
+
+Which of the other theorems discussed in class (Theorems 3.5.4, 3.5.7,
+3.5.8, 3.5.11 in the Pierce book) remain valid?
+
+<br><br>
+
+You do not have to prove or disprove the theorems.  Just state which
+theorems remain valid and which ones do not.
+
+
+<br><br>
+<hr>
+
+<!--  ***********************************************************   -->
+
+<cite>Problem 4</cite><br><br>
+
+Consider the subset of the Java bytecode language discussed in class
+(Figures 3 and 4 in the POPL 1998 paper by Stata and Abadi).
+
+Your goal for this problem is to extend the language to support the
+following two instructions:
+
+<ul>
+
+  <li>
+  <font color=#009900>
+  goto L
+  </font>
+  </li>
+
+  <li>
+  <font color=#009900>
+  add
+  </font>
+  </li>
+
+</ul>
+
+The instruction <font color=#009900>goto L</font> jumps to label L.  
+
+The instruction <font color=#009900>add</font> pops the top two
+elements off the stack, adds them, and pushes the result onto the
+stack.
+
+<br><br>
+<hr>
+
+<!--  ***********************************************************   -->
+
+<cite>Problem 4a (4 Points)</cite><br><br>
+
+Extend the operational sematics (dynamic semantics) of the language
+(Figure 3) to support the new instructions.
+
+<br><br>
+<hr>
+
+<!--  ***********************************************************   -->
+
+<cite>Problem 4b (4 Points)</cite><br><br>
+
+Extend the typing rules (static sematics) of the language (Figure 4)
+to support the new instructions.
+
+<br><br>
+<hr>
+
+<!--  ***********************************************************   -->
+
+<cite>Problem 5 </cite><br><br>
+
+Consider the language of Featherweight Java discussed in class
+(Figures 19-1, 19-2, 19-3, 19-4 in the Pierce book).  Note that unlike
+Java, Featherweight Java has no <i>null</i> pointers.  The goal of
+this problem is to add null pointers to Featherweight Java.  The
+following examples illustrate the intended semantics.
+
+<br><br>
+
+<font color=#009900>
+
+              class A extends Object {            <br>
+&nbsp;&nbsp;    B b;                              <br>
+&nbsp;&nbsp;    A (B b) { super(); this.b = b; }  <br>
+&nbsp;&nbsp;    A setB(B b) { return new A(b); }  <br>
+&nbsp;&nbsp;    B getB() { return this.b; }       <br>
+              }                                   <br>
+
+<br>
+
+              class B extends Object {            <br>
+&nbsp;&nbsp;    B () { super(); }                 <br>
+&nbsp;&nbsp;    B id() { return this; }           <br>
+              }                                   <br>
+
+<br>
+</font>
+
+
+<table border="1"
+
+<tr><th>Input <th>Output
+
+<tr><td> <font color=#009900> new A(new B())              </font>
+    <td> <font color=#009900> new A(new B())              </font>
+
+<tr><td> <font color=#009900> new A(new B()).getB()       </font>
+    <td> <font color=#009900> new B()                     </font>
+
+<tr><td> <font color=#009900> new A(new B()).getB().id()  </font>
+    <td> <font color=#009900> new B()                     </font>
+
+<tr><td> <font color=#009900> new A(null)                 </font>
+    <td> <font color=#009900> new A(null)                 </font>
+
+<tr><td> <font color=#009900> new A(null).getB()          </font>
+    <td> <font color=#009900> null                        </font>
+
+<tr><td> <font color=#009900> new A(null).getB().id()                 </font>
+    <td> <font color=#990000> error (null pointer dereferencing)      </font>
+
+<tr><td> <font color=#009900> new A(new B()).setB(null)               </font>
+    <td> <font color=#009900> new A(null)                             </font>
+
+<tr><td> <font color=#009900> new A(new B()).setB(null).getB()        </font>
+    <td> <font color=#009900> null                                    </font>
+
+<tr><td> <font color=#009900> new A(new B()).setB(null).getB().id()   </font>
+    <td> <font color=#990000> error (null pointer dereferencing)      </font>
+
+<tr><td> <font color=#009900> null                                    </font>
+    <td> <font color=#009900> null                                    </font>
+
+<tr><td> <font color=#009900> (A) null                                </font>
+    <td> <font color=#009900> null                                    </font>
+
+</table>
+
+
+<br><br>
+<hr>
+
+<!--  ***********************************************************   -->
+
+<cite>Problem 5a (3 Points) </cite><br><br>
+
+Extend the syntax of Featherweight Java (Figure 19-1 in the Pierce book) to
+support null pointers.
+
+<br><br>
+<hr>
+<br><br>
+
+<!--  ***********************************************************   -->
+
+<cite>Problem 5b (3 Points) </cite><br><br>
+
+Extend the evaluation rules (Figure 19-3 in the Pierce book) to support
+null pointers.
+
+<br><br>
+<hr>
+<!--  ***********************************************************   -->
+
+<cite>Problem 5c (3 Points) </cite><br><br>
+
+Extend the typing rules (Figures 19-1 and 19-4 in the Pierce book) to
+support null pointers.
+
+<br><br>
+<hr>
+
+<!--  ***********************************************************   -->
+
+<cite>Problem 5d (3 Points) </cite><br><br>
+
+What can you say about well typed programs in the new language?
+
+Modify the statements of the progress and preservation theorems
+(Theorems 8.3.2 and 8.3.3 in the Pierce book) so that they hold for
+the new language.
+
+<br><br>
+
+You only have to state the theorems.  
+
+You do not have to prove the theorems.
+
+<br><br>
+<hr>
+
+
+<!--  ***********************************************************   -->
+
+<cite>Problem 6 (10 Points)</cite><br><br>
+
+Recall the verfication conditions for some simple commands discussed in
+class:
+
+<br><br>
+
+<table class="items" border=1 cellspacing=2 cellpadding=4>
+
+<tr class="header2"><td>VC(<font color=#009900>skip</font>, B) = <td>B
+
+<tr class="header2"><td>VC(<font color=#009900>c1; c2</font>, B) = <td>VC(c1, VC(c2, B))
+
+<tr class="header2"><td>VC(<font color=#009900>x:=e</font>, B) = <td>B[x&rarr;e]
+
+<tr class="header2"><td>VC(<font color=#009900>if b then c1 else c2</font>, B) = <td>(b &rArr; VC(c1, B)) &and; (&not;b &rArr; VC
+(c2, B))
+
+<tr class="header2"><td>VC(<font color=#009900>while</font><sub>I</sub> <font color=#009900>b do c</font>, B) =
+<td>I &and; (&forall; x<sub>1</sub>..x<sub>n</sub>.  I &rArr; (b &rArr; VC(c, I) &and; &not;b &rArr; B)),
+
+<br>
+
+<i>where x<sub>1</sub>..x<sub>n</sub> are variables modified in c</i>
+
+</table>
+
+<br><br>
+
+
+Find an appropriate loop invariant and prove the partial correctness
+assertion for the following factorial program, using the verification
+condition rules discussed in class.
+
+<br><br>
+
+<b>
+{n = x, x > 0, fact = 1} <font color=#009900>while (n > 0) do (fact := n &times; fact; n := n &minus; 1)</font> {fact = x!}
+</b>
+
+
+<br><br>
+
+That is, compute the verification condition before the while loop, and
+confirm that the given precondition <b>{n = x, x > 0, fact = 1}</b> implies
+the verification condition you computed.
+
+<br><br>
+<hr>
+
+<!--  ***********************************************************   -->
+
+<img src="../../../images/mailbox.gif" alt="[Mail]" align=middle border=OFF>
+<img src="../../../images/email.png" alt="[boyapati dot chandrasekhar at gmail dot com]" align=middle width=225 border=OFF>
+
+<!--  ***********************************************************   -->
+
+</body>

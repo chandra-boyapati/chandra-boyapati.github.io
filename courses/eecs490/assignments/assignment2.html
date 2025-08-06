@@ -1,0 +1,586 @@
+<head>
+<title>EECS 490: Programming Languages (Fall 2006)</title>
+
+  <style type="text/css">
+    <!--
+
+    a:link    {text-decoration: none; color: #0000E0}
+    a:visited {text-decoration: none; color: #0000E0}
+    a:active  {text-decoration: none; color: #0000E0}
+    a:hover   {text-decoration: none; color: #0096E0}
+
+    cite a:link    {font-style: normal; font-weight: bold; 
+                    text-decoration: none; color: #990000}
+    cite a:visited {font-style: normal; font-weight: bold; 
+                    text-decoration: none; color: #990000}
+    cite           {font-style: normal; font-weight: bold; 
+                    text-decoration: none; color: #990000}
+
+    table.items {
+        border: 0px;
+        background-color: #AAAAFF;
+    }
+
+    table.items tr.header td {
+        text-align: center;
+        background-color: #AAAAFF;
+        font-weight: bold;
+    }
+
+    table.items tr.header2 td {
+        text-align: left;
+        background-color: #CCCCFF;
+        font-weight: bold;
+    }
+
+    table.items tr.header3 td {
+        text-align: left;
+        background-color: #FFCCAA;
+        font-weight: bold;
+    }
+
+    table.items tr td {
+        background-color: #F0F0FF;
+        border: 0px;
+    }
+
+   code { color: #009900 }
+   pre { color: #009900 }
+   .error { color: #990000 }
+
+    --> 
+  </style>
+
+</head>
+
+<!--  *****************************************************************   -->
+
+<body bgcolor="#FFFFFF">
+
+<!--  *****************************************************************   -->
+
+<body>
+
+<h1><b>Assignment 2</b></h1>
+
+<hr>
+
+<!--  *************************************************************   -->
+
+<br>
+
+<font color=#009900> 
+<b>Due on Oct 2 before lecture.</b> 
+</font>
+
+<br><br>
+
+<font color=#009900> 
+<b>
+
+Email your solutions to pdarga@umich.edu. 
+
+</b> 
+</font>
+
+
+<br><br>
+<hr>
+
+
+<!--  *************************************************************   -->
+
+<br>
+You can download MIT/GNU Scheme from 
+<a href="http://www.gnu.org/software/mit-scheme/">here</a>.
+
+Please use 
+<a href="http://ftp.gnu.org/gnu/mit-scheme/testing.pkg/7.7.90/">
+Scheme version 7.7.90</a>.
+
+<br><br>
+
+<font color=#990000>
+(Note, we had previously suggested the latest Scheme version 7.7.90+.  That
+seems to be incompatible with Scheme+.  So please use the above older
+Scheme version 7.7.90.)
+</font>
+
+
+<br><br>
+
+Or, you can log into a CAEN linux machine (such as
+loginlinux.engin.umich.edu) or a DCO linux machine (such as
+willow.eecs.umich.edu), and run scheme as follows: <br>
+
+% cd ~bchandra/490 <br>
+% ./scheme
+
+
+<br><br>
+<hr>
+
+
+<p>
+In this assignment you will modify an interpreter for the PostFix
+language as described in the Turbak text, Chapters 1-3.  Your
+interpreter will mirror the small-step operational sematics rewrite
+rules on page 47 of the text.  This assignment will also give you an
+opportunity to use the pattern-matching facilities of Scheme+.
+</p>
+
+
+<b>Files</b>
+
+<ul>
+<li><a href="scheme+.scm">Scheme+</a></li>
+<li><a href="base.scm">Support procedures for PostFix and PostText</a></li>
+<li><a href="postfix.scm">Interpreter for PostFix</a></li>
+</ul> 
+
+<b>Getting Started with PostFix</b>
+
+<p>
+To get started with PostFix, we first must load the Scheme+ file and
+the PostFix support file into the interpreter.
+</p>
+
+<pre>
+(load "scheme+.scm")
+(load "base.scm")
+(load "postfix.scm")
+</pre>
+
+<p>
+After that, we can begin testing some simple PostFix programs with the
+supplied semantics.
+</p>
+
+<table border="1">
+<tr>
+<td><code>(postfix 0 3)</code></td>
+<td><code>lambda (list) (...)</code></td>
+</tr>
+<tr>
+<td><code>((postfix 0 3) '())</code></td>
+<td>3</td>
+</tr>
+<tr>
+<td><code>((postfix 2 pop) '(4 5))</code></td>
+<td>5</td>
+</tr>
+<tr>
+<td><code>((postfix 2 pop) '(4))</code></td>
+<td><span class="error">error "expected two arguments"</span></td>
+</tr>
+<tr>
+<td><code>((postfix 0 pop) '())</code></td>
+<td><span class="error">"stuck: pop"</span></td>
+</tr>
+</table>
+
+<p>
+In general, to evaluate a PostFix program, apply it to a list of
+numbers with as many elements as the first argument to
+<code>postfix</code>.
+</p>
+
+<b>Overview of the Interpreter</b>
+
+<p>
+The interpreter closely follows the rewrite rules presented as
+part of the small-step operational semantics of PostFix.  These rules
+are listed on page 47 of the Turbak text.  Each rewrite rule transforms
+a configuration into another.  In PostFix, a <i>configuration</i> is a
+tuple consisting of a list of commands and a stack.
+For example, the rule labeled [<i>pop</i>] takes a configuration with
+<b>pop</b> at the
+head of the command list and a value at the top of the stack, and
+returns a configuration with <b>pop</b> removed from the command list and
+the value at the top of the stack removed.
+</p>
+
+<p>
+The interpreter makes use of a function <code>small-step</code>
+which, given a PostFix configuration, returns a new PostFix
+configuration representing the completion of one step of the PostFix
+computation.  That is, given a configuration, it applies one of
+the rewrite rules and returns the rewritten configuration.
+</p>
+
+<b>Datatypes for the PostFix Interpreter</b>
+
+<p>
+The PostFix support file contains the declarations of several
+datatypes which are used in the interpreter.
+These datatypes define what configurations, commands, and stack values
+look like to the small-step interpreter.
+</p>
+
+
+<font color=#009900><b>Commands</b></font>
+
+<p>
+As described in section 1.4.1 of the Turbak text, the commands in
+PostFix are:
+</p>
+
+<ul>
+<li>Integer numerals</li>
+<li>Command tokens: add, div, eq, exec, gt, lt, mul, nget, pop, rem,
+sel, sub, swap</li>
+<li>Executable sequences</li>
+</ul>
+
+<p>
+The provided PostFix infrastructure converts PostFix syntax into a
+list of commands, where each command matches one of the following:
+</p>
+
+<ul>
+<li><code>(@num n)</code>: An integer numeral</li>
+<li><code>(@seq s)</code>: An executable sequence</li>
+<li><code>(@arithop op)</code>: An arithmetic operation</li>
+<li><code>(@relop op)</code>: An arithmetic comparison</li>
+<li>The rest: <code>(@exec)</code>,
+<code>(@nget)</code>, <code>(@pop)</code>, <code>(@sel)</code>, and
+<code>(@swap)</code></li>
+</ul>
+
+<font color=#009900><b>Stack Values</b></font>
+
+<p>
+As stated in section 1.4.2 of the Turbak text: a value on the stack is
+either (1) an integer numeral or (2) an executable sequence.  The
+provided infrastructure expects data matching one of the following:
+</p>
+
+<ul>
+<li><code>($num n)</code>: An integer numeral</li>
+<li><code>($seq s)</code>: An executable sequence</li>
+</ul>
+
+<p>
+Notice the difference between the constructors for stack data and
+commands: the stack data constructors begin with '$' while the
+commands begin with '@'.
+</p>
+
+<font color=#009900><b>Configurations</b></font>
+
+<p>
+A configuration is simply a tuple containing a command list and a list
+of stack values: <code>($conf command-list stack)</code>.
+</p>
+
+<b>How <code>small-step</code> works</b>
+
+<p>
+The infrastructure calls <code>small-step</code> with a configuration,
+and expects it to return a configuration.  The code assumes that the
+command list passed to <code>small-step</code> is non-null; that is,
+it has at least one command in it.  The provided semantics uses Scheme+
+pattern matching to get at that first command and the stack:
+</p>
+
+<pre>
+(define (small-step config)
+  (match config
+    (($conf (cons cmd rest-cmds) stack) ... )))
+</pre>
+
+<p>
+Notice that Scheme+ pattern matching was able to look not only inside
+the configuration, but also inside one of its elements, namely the
+command list.  This facility will be useful for examining the state of
+the stack for some of the commands.  In fact, the only way to inspect
+the type of values present on the stack is to use pattern matching.
+</p>
+
+<font color=#009900><b>Command Implementations</b></font>
+
+<p>
+Now looking inside the ... in the above code from the semantics:
+</p>
+
+<pre>
+     (match cmd
+       ((@num n)
+	($conf rest-cmds (cons ($num n) stack)))
+       ((@pop)
+	(match stack
+          ((cons _ rest-stk) ($conf rest-cmds rest-stk))
+	  (_ (stuck "pop"))))
+       ...)
+</pre>
+
+<p>
+The first example matches numeric literals, and simply returns a new
+configuration with the number removed from the command list and added
+to the top of the stack.  Each clause looks roughly like this,
+matching a command name and returning a new configuration using
+<code>$conf</code>.
+</p>
+
+
+
+<p>
+The second example above, <code>@pop</code>, performs a
+pattern match on the stack, ignores the top element, and returns the
+rest of the stack.  This example highlights the use of
+<code>stuck</code>: if the pattern match fails, then no rewrite rule
+applies for this configuration in the operational semantics.
+Therefore, we cannot continue computation; we say we are
+<i>stuck</i>.
+</p>
+
+<p>
+In the implementation of <code>small-step</code>, if no rewrite rule
+applies to the given configuration, the code calls
+<code>stuck</code>, passing it a string with the name of the command
+that failed.  Every syntactically correct PostFix program does not
+cause a pattern match failure or otherwise cause an error; the
+interpreter instead calls <code>stuck</code>.
+</p>
+
+<!--  *****************************************************************   -->
+<hr>
+<cite>Warmup: Implement nget </cite> <br><br>
+
+All PostFix commands are implemented in the provided
+<code>small-step</code>, except for <b>nget</b>.  
+
+Fill in the empty implementation of <b>nget</b> to complete the PostFix
+interpreter.
+
+<i>Don't try PostText until you have nget working for PostFix!</i>
+
+Implementing <b>nget</b> will help you understand the inner workings of the
+small-step interpreter.
+
+<br><br>
+<hr>
+
+<!--  *****************************************************************   -->
+<cite>Problem 1: PostText </cite> <br><br>
+
+
+<p>
+One of the chief limitations of the PostFix language is that there is no
+way to name values.  In this problem, we consider extending PostFix with
+a simple naming system.  We will call the resulting language PostText.
+
+(This is adapted from a problem in the Turbak text.)
+</p>
+
+<p>
+The grammar for PostText is the same as that for PostFix except that
+there are three new commands:
+</p>
+
+<pre>
+C ::= ...
+	| I [Name]
+	| def [Definition]
+	| ref [Name-reference]
+</pre>
+
+<p>
+Here, I is an element of the syntactic domain Identifier, which includes
+all alphabetic names except for the PostText command names (pop, exec,
+def, etc.), which are treated as reserved words of the language.
+</p>
+
+<p>
+The model of the PostText language extends the model of PostFix by
+including a current dictionary as well as a current stack.  A dictionary
+is an object that maintains bindings between names and values.  The
+commands inherited from PostFix have no effect on the dictionary.  The
+informal behavior of the new commands is as follows:
+</p>
+
+<p>
+<b>I</b>:  I is a literal name that is similar to an immutable string literal in
+other languages.  Executing this command simply pushes I on the stack.
+The Value domain must be extended to include identifiers in addition to
+numerals and executable sqeuences.
+</p>
+
+<p>
+<b>def</b>:  Let v<sub>1</sub> be the top stack value and v<sub>2</sub> be the
+next to top value.  The def command pops both values off of the stack and
+updates the current dictionary to include a binding between v<sub>2</sub>
+and v<sub>1</sub>.  v<sub>2</sub> should be a name, but v<sub>1</sub>
+can be any value (including an executable sequence or name literal).
+It is an error if v<sub>2</sub> is not a name.
+</p>
+
+<p>
+<b>ref</b>:  The ref command pops the top element v<sub>name</sub> off of
+the stack, where v<sub>name</sub> should be a name I.  It looks up the
+value v<sub>val</sub> associated with I in the current dictionary and
+pushes v<sub>val</sub> on top of the stack.  It is an error if there
+is no binding for I in the current dictionary or if v<sub>name</sub>
+is not a name.
+</p>
+
+<p>
+Consider the following evaulations:
+</p>
+
+<table border="1">
+<tr>
+<th>PostText program</th>
+<th>Result</th>
+</tr>
+<tr>
+<td><code>((posttext 0 average (add 2 div) def 3 7 average ref exec) '())</code></td>
+<td>5</td>
+</tr>
+<tr>
+<td><code>((posttext 0 a 3 def dbl (2 mul) def a ref dbl ref exec 4 dbl ref exec add) '())</code></td>
+<td>14</td>
+</tr>
+<tr>
+<td><code>((posttext 0 a b def a ref 7 def b ref) '())</code></td>
+<td>7</td>
+</tr>
+<tr>
+<td><code>((posttext 0 a 5 def a ref 7 def b ref) '())</code></td>
+<td class="error">"stuck: def"</td>
+</tr>
+<tr>
+<td><code>((posttext 0 c 4 def d ref 1 add) '())</code></td>
+<td class="error">"stuck: ref"</td>
+</tr>
+</table>
+
+<p>
+In an SOS for PostText, the usual PostFix configuration space must be
+extended to include a dictionary object as a new state component:
+</p>
+
+<blockquote>
+CF<sub>PostText</sub> = Commands X Stack X Dictionary
+</blockquote>
+
+
+<br><br>
+<hr>
+
+<!--  *****************************************************************   -->
+<cite>Problem 1a:PostText Operational Semantics (4 Points) </cite> <br><br>
+
+<p>
+Suppose that a dictionary is represented as a sequence of
+identifier/value pairs:
+</p>
+
+<blockquote>
+D &isin; Dictionary = (Identifier X Value)*
+</blockquote>
+
+<ol type=i>
+
+<li>Define the final configurations, input function, and output function
+for the PostText SOS.</li>
+
+<li>Give the rewrite rules for the <b>I</b>, <b>def</b>, and <b>ref</b>
+commands.</li>
+
+</ol>
+
+
+<br><br>
+<hr>
+
+<!--  *****************************************************************   -->
+<cite>Problem 1b:Extend <code>small-step</code> for PostText (12 Points) </cite> <br><br>
+
+In this problem you will extended the provided <code>small-step</code>
+function for PostFix to handle PostText.  Here is a brief list of hints
+to get you started:
+
+<ul>
+<li>The <code>command</code> datatype must be extended to contain the new
+commands provided by PostText.  Once added, these commands can be used
+in pattern matching expressions within the interpreter.</li>
+<li>The <code>parse-command</code> function must be taught how to parse
+PostText syntax.  Hint: to parse identifiers, the last line should pattern match on
+<code>(symbol-&gt;sexp sym)</code> to match all symbols <i>other</i> than
+the ones listed above it (e.g. the commands).</li>
+<li>As discussed above, the <code>configuration</code> datatype
+has to change to accomodate PostText.  Keep in mind that this data
+structure is both the argument and the return type of
+<code>small-step</code>, and is also used by <code>evaluate</code> and returned by
+<code>make-initial-config</code> (which is the input function of the
+operational semantics).
+<li>Update <code>small-step</code> to handle all these changes to the
+core data structures of the interpreter.
+<li>After all the PostFix commands work again, add implementations of
+<b>I</b>, <b>def</b>, and <b>ref</b>.
+</ul>
+
+
+<br><br>
+<hr>
+
+<!--  *****************************************************************   -->
+<cite>Problem 2: Test Cases (4 Points) </cite> <br><br>
+
+As in assignment 1, supply a test suite along with your code.
+Your test suite should be appended to the end of your solution, and
+involve a series of applications of <code>check</code> to a quoted
+<b>PostText</b> program and its expected result.  If the computation is
+supposed to get stuck on the given test case, supply the name of the
+command which gets stuck, appended to "stuck: ", as the expected value.
+
+<pre>
+(check '((posttext 1 4 add) '(3)) 7)
+(check '((posttext 0 1 2 pop swap) '()) "stuck: swap")
+</pre>
+
+<br><br>
+<hr>
+
+<!--  *****************************************************************   -->
+<cite>Summary</cite> <br><br>
+
+<ul>
+<li>Warmup: Complete the implementation of PostFix's <code>small-step</code></li>
+<ul>
+<li>Implement <b>nget</b> using pattern matching on the stack</li>
+<li>Call <code>stuck</code> if no rewrite rule applies</li>
+</ul>
+<li>Problem 1a: Complete the semantics for PostText
+<li>Problem 1b: Implement PostText (including nget)
+<ul>
+<li>Update the datatypes, parser, and <code>small-step</code> to
+implement the PostText semantics defined in problem 1</li>
+</ul>
+<li>Problem 2: Write test cases using <code>check</code> to validate your
+code</li>
+<li>Submit your work
+<ul>
+<li>Put the write up for Problem 1 in a PDF file called uniqname.pdf
+(please no Word .doc files!)</li>
+<li>Put your PostText implementation and test cases in a file called uniqname.scm</li>
+<li>Send those files to <a href="mailto:pdarga@umich.edu">pdarga@umich.edu</a></li>
+</ul>
+</ul>
+
+<!--  *****************************************************************   -->
+
+
+<br>
+<hr>
+
+<!--  ***********************************************************   -->
+
+<img src="../../../images/mailbox.gif" alt="[Mail]" align=middle border=OFF>
+<img src="../../../images/email.png" alt="[boyapati dot chandrasekhar at gmail dot com]" align=middle width=225 border=OFF>
+
+<!--  ***********************************************************   -->
+
+</body>
+</html>
