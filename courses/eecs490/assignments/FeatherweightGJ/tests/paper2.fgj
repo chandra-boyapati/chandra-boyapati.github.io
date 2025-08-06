@@ -1,0 +1,9 @@
+// paper2.fgj
+
+class List<X extends Object> extends Object {
+	X data;
+	List(X data) { super(); this.data = data; }
+}
+
+// this should fail
+(List<Object>)new Object()

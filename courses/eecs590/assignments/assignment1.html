@@ -1,0 +1,299 @@
+<head>
+<title>EECS 590: Advanced Programming Languages (Winter 2011)</title>
+
+  <style type="text/css">
+    <!--
+
+    a:link    {text-decoration: none; color: #0000E0}
+    a:visited {text-decoration: none; color: #0000E0}
+    a:active  {text-decoration: none; color: #0000E0}
+    a:hover   {text-decoration: none; color: #0096E0}
+
+    cite a:link    {font-style: normal; font-weight: bold; 
+                    text-decoration: none; color: #990000}
+    cite a:visited {font-style: normal; font-weight: bold; 
+                    text-decoration: none; color: #990000}
+    cite           {font-style: normal; font-weight: bold; 
+                    text-decoration: none; color: #990000}
+
+    table.items {
+        border: 0px;
+        background-color: #AAAAFF;
+    }
+
+    table.items tr.header td {
+        text-align: center;
+        background-color: #AAAAFF;
+        font-weight: bold;
+    }
+
+    table.items tr.header2 td {
+        text-align: left;
+        background-color: #CCCCFF;
+        font-weight: bold;
+    }
+
+    table.items tr.header3 td {
+        text-align: left;
+        background-color: #FFCCAA;
+        font-weight: bold;
+    }
+
+    table.items tr td {
+        background-color: #F0F0FF;
+        border: 0px;
+    }
+
+    --> 
+  </style>
+
+</head>
+
+<!--  *****************************************************************   -->
+
+<body bgcolor="#FFFFFF">
+
+<!--  *****************************************************************   -->
+
+<body>
+
+<h1><b>Assignment 1</b></h1>
+
+<hr>
+
+<!--  *************************************************************   -->
+
+<br>
+
+<font color=#009900> 
+<b>Due on Jan 27 before lecture.</b> 
+</font>
+
+<br><br>
+
+<font color=#009900> 
+<b>
+
+Please bring a hardcopy of your solutions to lecture.  Or submit a hardcopy
+of your solutions before lecture.
+
+</b>
+</font>
+
+<br><br>
+<hr>
+
+<!--  *****************************************************************   -->
+
+<cite>Problem 1 </cite><br><br>
+
+Consider the language of boolean and arithmetic expressions discussed in
+class (Figures 3-1 and 3-2 in the Pierce book).  Suppose we add a new
+syntactic form:
+
+<ul>
+
+  <li>
+  <font color=#009900>
+  double t
+  </font>
+  </li>
+
+</ul>
+
+Suppose we also add new evaluation rules:
+
+<ul>
+
+  <li>
+  <font color=#009900>
+  t1 ---> t1'<br>
+  ------------------------- <br>
+  double t1 ---> double t1' <br><br>
+  </font> 
+  </li>
+
+  <li>
+  <font color=#009900>
+  double 0 ---> 0
+  </font> 
+  </li>
+
+  <li>
+  <font color=#009900>
+  double (succ nv1) ---> succ (succ (double nv1))
+  </font>
+  </li>
+
+</ul>
+
+<hr>
+
+<!--  ***********************************************************   -->
+
+<cite>Problem 1a </cite><br><br>
+
+Which of the theorems discussed in class (Theorems 3.5.4, 3.5.7, 3.5.8,
+3.5.11, 3.5.12 in the Pierce book) remain valid?
+
+<br><br>
+
+If a theorem is no longer valid, then present a counter example.  
+
+If a theorem is still valid but its proof is different, then present the
+new proof.
+
+(Note that the Pierce book contains proofs of these theorems for the
+original language.  You do not have to reproduce these proofs.  Just show
+the portions of the proofs that are different now.)
+
+<br><br>
+<hr>
+
+<!--  ***********************************************************   -->
+
+<cite>Problem 1b </cite><br><br>
+
+Extend the typing rules discussed in class (Figures 8-1 and 8-2 in the
+Pierce book) to support the new language.
+
+<br><br>
+<hr>
+
+<!--  ***********************************************************   -->
+
+<cite>Problem 1c </cite><br><br>
+
+Using the new typing rules, prove the progress and preservation theorems
+(Theorems 8.3.2 and 8.3.3 in the Pierce book) for the new language. 
+
+(Note that the Pierce book contains proofs of these theorems for the
+original language.  You do not have to reproduce these proofs.  Just show
+the portions of the proofs that are different now.)
+
+<br><br>
+<hr>
+
+
+<!--  ***********************************************************   -->
+
+<cite>Problem 2 </cite><br><br>
+
+Consider the language of boolean and arithmetic expressions discussed in
+class (Figures 3-1 and 3-2 in the Pierce book).  Suppose we add a new
+syntactic form:
+
+<ul>
+
+  <li>
+  <font color=#009900>
+  half t
+  </font>
+  </li>
+
+</ul>
+
+Suppose we also add new evaluation rules:
+
+<ul>
+
+  <li>
+  <font color=#009900>
+  t1 ---> t1'<br>
+  ------------------------- <br>
+  half t1 ---> half t1' <br><br>
+  </font> 
+  </li>
+
+  <li>
+  <font color=#009900>
+  half 0 ---> 0
+  </font> 
+  </li>
+
+  <li>
+  <font color=#009900>
+  half (succ (succ nv1)) ---> succ (half nv1)
+  </font>
+  </li>
+
+</ul>
+
+<br>
+<hr>
+
+<!--  ***********************************************************   -->
+
+<cite>Problem 2a </cite><br><br>
+
+Extend the typing rules discussed in class (Figures 8-1 and 8-2 in the
+Pierce book) to support the new language.
+
+<br><br>
+<hr>
+
+<!--  ***********************************************************   -->
+
+<cite>Problem 2b </cite><br><br>
+
+What can you say about well-typed programs in the new language?
+
+Are the progress and preservation theorems (Theorems 8.3.2 and 8.3.3 in the
+Pierce book) valid for the new language?
+
+If so, prove the theorems.
+
+If not, then modify the statements of the theorems appropriately and then
+prove the theorems.
+
+(Note that the Pierce book contains proofs of these theorems for the
+original language.  You do not have to reproduce these proofs.  Just show
+the portions of the proofs that are different now.)
+
+<br><br>
+<hr>
+
+<!--  *****************************************************************   -->
+
+<cite>Problem 3 </cite><br><br>
+
+Consider the language of boolean and arithmetic expressions discussed in
+class (Figures 3-1 and 3-2 in the Pierce book).  Suppose we add a new
+evaluation rule:
+
+<ul>
+
+  <li>
+  <font color=#009900>
+  succ (pred nv1) ---> nv1
+  </font>
+  </li>
+
+</ul>
+
+
+Which of the theorems discussed in class (Theorems 3.5.4, 3.5.7, 3.5.8,
+3.5.11, 3.5.12 in the Pierce book) remain valid?
+
+<br><br>
+
+If a theorem is no longer valid, then present a counter example.  
+
+If a theorem is still valid but its proof is different, then present the
+new proof.
+
+(Note that the Pierce book contains proofs of these theorems for the
+original language.  You do not have to reproduce these proofs.  Just show
+the portions of the proofs that are different now.)
+
+<br><br>
+<hr>
+
+<!--  ***********************************************************   -->
+
+<img src="../../../images/mailbox.gif" alt="[Mail]" align=middle border=OFF>
+<img src="../../../images/email.png" alt="[boyapati dot chandrasekhar at gmail dot com]" align=middle width=225 border=OFF>
+
+<!--  ***********************************************************   -->
+
+</body>

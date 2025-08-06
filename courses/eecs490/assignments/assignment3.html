@@ -1,0 +1,154 @@
+<head>
+<title>EECS 490: Programming Languages (Fall 2006)</title>
+
+  <style type="text/css">
+    <!--
+
+    a:link    {text-decoration: none; color: #0000E0}
+    a:visited {text-decoration: none; color: #0000E0}
+    a:active  {text-decoration: none; color: #0000E0}
+    a:hover   {text-decoration: none; color: #0096E0}
+
+    cite a:link    {font-style: normal; font-weight: bold; 
+                    text-decoration: none; color: #990000}
+    cite a:visited {font-style: normal; font-weight: bold; 
+                    text-decoration: none; color: #990000}
+    cite           {font-style: normal; font-weight: bold; 
+                    text-decoration: none; color: #990000}
+
+    table.items {
+        border: 0px;
+        background-color: #AAAAFF;
+    }
+
+    table.items tr.header td {
+        text-align: center;
+        background-color: #AAAAFF;
+        font-weight: bold;
+    }
+
+    table.items tr.header2 td {
+        text-align: left;
+        background-color: #CCCCFF;
+        font-weight: bold;
+    }
+
+    table.items tr.header3 td {
+        text-align: left;
+        background-color: #FFCCAA;
+        font-weight: bold;
+    }
+
+    table.items tr td {
+        background-color: #F0F0FF;
+        border: 0px;
+    }
+
+    --> 
+  </style>
+
+</head>
+
+<!--  *****************************************************************   -->
+
+<body bgcolor="#FFFFFF">
+
+<!--  *****************************************************************   -->
+
+<body>
+
+<h1><b>Assignment 3</b></h1>
+
+<hr>
+
+<!--  *************************************************************   -->
+
+<br>
+
+<font color=#009900> 
+<b>Due on Oct 9 before lecture.</b> 
+</font>
+
+<br><br>
+
+<font color=#009900> 
+<b>
+
+Please bring a hardcopy of your solutions to lecture.  Or submit a hardcopy
+of your solutions to Paul Darga before lecture.
+
+</b>
+</font>
+
+<br><br>
+<hr>
+
+<!--  *****************************************************************   -->
+
+<cite>Problem 1</cite><br><br>
+
+Recall Church numerals from Chapter 5 of the Pierce book.  They use unary
+representation for natural numbers.  Suppose we want to use binary
+representation instead.  One way to encode natural numbers is as follows:
+
+<ul>
+<li><font color=#009900> 0 = \i. \o. \t. ot </font></li>
+<li><font color=#009900> 1 = \i. \o. \t. it </font></li>
+<li><font color=#009900> 2 = \i. \o. \t. i(ot) </font></li>
+<li><font color=#009900> 3 = \i. \o. \t. i(it) </font></li>
+<li><font color=#009900> 4 = \i. \o. \t. i(o(ot)) </font></li>
+<li><font color=#009900> 5 = \i. \o. \t. i(o(it)) </font></li>
+<li><font color=#009900> 6 = \i. \o. \t. i(i(ot)) </font></li>
+<li><font color=#009900> 7 = \i. \o. \t. i(i(it)) </font></li>
+<li><font color=#009900> 8 = \i. \o. \t. i(o(o(ot))) </font></li>
+<li><font color=#009900> 9 = \i. \o. \t. i(o(o(it))) </font></li>
+<li><font color=#009900> 10 = \i. \o. \t. i(o(i(ot))) </font></li>
+<li><font color=#009900> 11 = \i. \o. \t. i(o(i(it))) </font></li>
+<li><font color=#009900> ... </font></li>
+</ul>
+
+Intuitively, a natural number n is a function that takes three parameters,
+i as the bit 1, o as the bit 0, and t as the sequence terminator, and
+returns the sequence of applications representing the binary encoding of n.
+
+<br><br>
+<hr>
+
+<!--  *****************************************************************   -->
+
+<cite>Problem 1a (4 Points)</cite><br><br>
+
+Write a combinator <font color=#009900>double n</font> that multiplies a
+natural number n by 2.  (A combinator is a lambda term without free
+variables.)
+
+<br><br>
+<hr>
+
+<!--  ***********************************************************   -->
+
+<cite>Problem 1b (4 Points)</cite><br><br>
+
+Recall the definition of Church booleans from Chapter 5 of the Pierce book:
+
+<ul>
+<li><font color=#009900> true = \t. \f. t </font></li>
+<li><font color=#009900> false = \t. \f. f </font></li>
+</ul>
+
+
+Write a combinator <font color=#009900>iszero n</font> that returns the
+Church boolean true if n is zero, and returns the Church boolean false
+otherwise.
+
+<br><br>
+<hr>
+
+<!--  ***********************************************************   -->
+
+<img src="../../../images/mailbox.gif" alt="[Mail]" align=middle border=OFF>
+<img src="../../../images/email.png" alt="[boyapati dot chandrasekhar at gmail dot com]" align=middle width=225 border=OFF>
+
+<!--  ***********************************************************   -->
+
+</body>

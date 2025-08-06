@@ -1,0 +1,521 @@
+<head>
+<title>EECS 490: Programming Languages (Fall 2006)</title>
+
+  <style type="text/css">
+    <!--
+
+    a:link    {text-decoration: none; color: #0000E0}
+    a:visited {text-decoration: none; color: #0000E0}
+    a:active  {text-decoration: none; color: #0000E0}
+    a:hover   {text-decoration: none; color: #0096E0}
+
+    cite a:link    {font-style: normal; font-weight: bold; 
+                    text-decoration: none; color: #990000}
+    cite a:visited {font-style: normal; font-weight: bold; 
+                    text-decoration: none; color: #990000}
+    cite           {font-style: normal; font-weight: bold; 
+                    text-decoration: none; color: #990000}
+
+    table.items {
+        border: 0px;
+        background-color: #AAAAFF;
+    }
+
+    table.items tr.header td {
+        text-align: center;
+        background-color: #AAAAFF;
+        font-weight: bold;
+    }
+
+    table.items tr.header2 td {
+        text-align: left;
+        background-color: #CCCCFF;
+        font-weight: bold;
+    }
+
+    table.items tr.header3 td {
+        text-align: left;
+        background-color: #FFCCAA;
+        font-weight: bold;
+    }
+
+    table.items tr td {
+        background-color: #F0F0FF;
+        border: 0px;
+    }
+
+    --> 
+  </style>
+
+</head>
+
+<!--  *****************************************************************   -->
+
+<body bgcolor="#FFFFFF">
+
+<!--  *****************************************************************   -->
+
+<body>
+
+<h1><b>Assignment 1</b></h1>
+
+<hr>
+
+<!--  *************************************************************   -->
+
+<br>
+
+<font color=#009900> 
+<b>Due on Sep 25 before lecture.</b> 
+</font>
+
+<br><br>
+
+<font color=#009900> 
+<b>
+
+Email your solutions to pdarga@umich.edu. 
+
+Preferably, email them as an attachment, with the filename: <i>your_unique_name</i>.scm
+
+</b> 
+</font>
+
+
+<br><br>
+<hr>
+
+
+<!--  *************************************************************   -->
+
+<br>
+You can download MIT/GNU Scheme from 
+<a href="http://www.gnu.org/software/mit-scheme/">here</a>.
+
+Please use 
+<a href="http://ftp.gnu.org/gnu/mit-scheme/testing.pkg/7.7.90/">
+Scheme version 7.7.90</a>.
+
+<br><br>
+
+Or, you can log into a CAEN linux machine (such as
+loginlinux.engin.umich.edu) or a DCO linux machine (such as
+willow.eecs.umich.edu), and run scheme as follows: <br>
+
+% cd ~bchandra/490 <br>
+% ./scheme
+
+
+
+<br><br>
+<hr>
+
+
+<!--  *************************************************************   -->
+
+<cite>Problem 1a (1.5 Points)</cite><br><br>
+
+Recall the function <a href="subst.scm">subst</a> we studied in class.
+
+(You can also find other scheme examples that we studied in class 
+<a href="scheme_examples.scm">here</a>.)
+
+<br><br>
+
+Implement a function <font color=#009900>multisubst</font>.  
+
+The function <font color=#009900>multisubst</font> takes three arguments: an
+atom <i>new</i>, an atom <i>old</i>, and a list of atoms <i>lat</i>.
+
+<font color=#009900>multisubst</font> replaces all occurence of
+<i>old</i> with <i>new</i> in <i>lat</i>.
+
+(Recall that <a href="subst.scm">subst</a> replaces only the first
+occurence of <i>old</i> with <i>new</i> in <i>lat</i>).
+
+The following examples illustrate the intended behaviour.
+
+<br><br>
+
+<table border="1"
+
+<tr><th>Input <th>Output
+
+<tr><td> <font color=#009900> (multisubst 'vanilla 'chocolate '())      </font>
+    <td> <font color=#009900> ()                                        </font>
+
+<tr><td> <font color=#009900> (multisubst 'vanilla 'chocolate '(vanilla icecream))   </font>
+    <td> <font color=#009900> (vanilla icecream)                                     </font>
+
+<tr><td> <font color=#009900> (multisubst 'vanilla 'chocolate '(chocolate icecream)) </font>
+    <td> <font color=#009900> (vanilla icecream)                                     </font>
+
+<tr><td> <font color=#009900> (multisubst 'vanilla 'chocolate '(chocolate icecream and chocolate milkshake)   </font>
+    <td> <font color=#009900> (vanilla icecream and vanilla milkshake)                                        </font>
+
+<tr><td> <font color=#009900> (multisubst 'vanilla 'chocolate '((chocolate) (icecream))) </font>
+    <td> <font color=#990000> error                                                      </font>
+
+<tr><td> <font color=#009900> (multisubst 'vanilla 'chocolate 'icecream)          </font>
+    <td> <font color=#990000> error                                               </font>
+
+</table>
+
+
+<br><br>
+<hr>
+
+<!--  *************************************************************   -->
+
+<cite>Problem 1b (1.5 Points)</cite><br><br>
+
+Implement a function <font color=#009900>subst*</font> that takes three
+arguments: an atom <i>new</i>, an atom <i>old</i>, and a list <i>l</i>, and
+replaces all occurence of <i>old</i> with <i>new</i> in <i>l</i>.
+
+The following examples illustrate the intended behaviour.
+
+<br><br>
+
+<table border="1"
+
+<tr><th>Input <th>Output
+
+<tr><td> <font color=#009900> (subst* 'vanilla 'chocolate '())      </font>
+    <td> <font color=#009900> ()                                    </font>
+
+<tr><td> <font color=#009900> (subst* 'vanilla 'chocolate '(vanilla icecream))   </font>
+    <td> <font color=#009900> (vanilla icecream)                                 </font>
+
+<tr><td> <font color=#009900> (subst* 'vanilla 'chocolate '(chocolate icecream)) </font>
+    <td> <font color=#009900> (vanilla icecream)                                 </font>
+
+<tr><td> <font color=#009900> (subst* 'vanilla 'chocolate '(chocolate icecream and chocolate milkshake)   </font>
+    <td> <font color=#009900> (vanilla icecream and vanilla milkshake)                                    </font>
+
+<tr><td> <font color=#009900> (subst* 'vanilla 'chocolate '((chocolate) (icecream))) </font>
+    <td> <font color=#009900> ((vanilla) (icecream))                                 </font>
+
+<tr><td> <font color=#009900> (subst* 'vanilla 'chocolate 'icecream)          </font>
+    <td> <font color=#990000> error                                           </font>
+
+<tr><td> <font color=#009900> (subst* 'orange 'banana '((banana) (split (((banana ice)) (cream (banana)))) (banana brandy))) </font>
+    <td> <font color=#009900> ((orange) (split (((orange ice)) (cream (orange)))) (orange brandy)))                          </font>
+
+</table>
+
+
+<br><br>
+<hr>
+
+<!--  *************************************************************   -->
+
+<cite>Problem 2a (0.5 Points)</cite><br><br>
+
+Write a function <font color=#009900> sum </font> that takes a list of
+numbers as its argument and computes the sum of the numbers.
+
+You can use the built-in scheme function <font color=#009900> + </font> to
+implement <font color=#009900>sum</font>.
+
+The following examples illustrate the intended behaviour.
+
+<br><br>
+
+<table border="1"
+
+<tr><th>Input <th>Output
+
+<tr><td> <font color=#009900> (sum '())      </font>
+    <td> <font color=#009900> 0              </font>
+
+<tr><td> <font color=#009900> (sum '(1))     </font>
+    <td> <font color=#009900> 1              </font>
+
+<tr><td> <font color=#009900> (sum '(1 2))   </font>
+    <td> <font color=#009900> 3              </font>
+
+<tr><td> <font color=#009900> (sum '(1 2 3)) </font>
+    <td> <font color=#009900> 6              </font>
+
+<tr><td> <font color=#009900> (sum '((1) (2) (3)) </font>
+    <td> <font color=#990000> error               </font>
+
+<tr><td> <font color=#009900> (sum 1 2 3)    </font>
+    <td> <font color=#990000> error          </font>
+
+</table>
+
+
+<br><br>
+<hr>
+
+<!--  *************************************************************   -->
+
+<cite>Problem 2b (0.5 Points)</cite><br><br>
+
+Write a function <font color=#009900> product </font> that takes a list of
+numbers as its argument and computes the product of the numbers.
+
+You can use the built-in scheme function <font color=#009900> * </font> to
+implement <font color=#009900>product</font>.
+
+The following examples illustrate the intended behaviour.
+
+<br><br>
+
+<table border="1"
+
+<tr><th>Input <th>Output
+
+<tr><td> <font color=#009900> (product '())      </font>
+    <td> <font color=#009900> 1                  </font>
+
+<tr><td> <font color=#009900> (product '(1))     </font>
+    <td> <font color=#009900> 1                  </font>
+
+<tr><td> <font color=#009900> (product '(1 2))   </font>
+    <td> <font color=#009900> 2                  </font>
+
+<tr><td> <font color=#009900> (product '(1 2 3)) </font>
+    <td> <font color=#009900> 6                  </font>
+
+<tr><td> <font color=#009900> (product '(0 1 2)) </font>
+    <td> <font color=#009900> 0                  </font>
+
+<tr><td> <font color=#009900> (product '((1) (2) (3))) </font>
+    <td> <font color=#990000> error                    </font>
+
+<tr><td> <font color=#009900> (product 1 2 3)    </font>
+    <td> <font color=#990000> error              </font>
+
+</table>
+
+
+<br><br>
+<hr>
+
+<!--  *************************************************************   -->
+
+<cite>Problem 2c (2 Points)</cite><br><br>
+
+Notice that the functions <font color=#009900> sum </font> and <font
+color=#009900> product </font> are similar except for a few details.
+
+Write a function <font color=#009900> compute </font> that incorporates the
+common behavior of <font color=#009900> sum</font> and <font
+color=#009900>product</font>.
+
+<br><br>
+
+<font color=#009900> (compute + 0) </font> must behave like <font
+color=#009900>sum</font>, and <font color=#009900> (compute * 1) </font> must
+behave like <font color=#009900>product</font>.
+
+The following examples illustrate the intended behaviour.
+
+<br><br>
+
+<table border="1"
+
+<tr><th>Input <th>Output
+
+<tr><td> <font color=#009900> ((compute + 0) '(1 2 3 4)) </font>
+    <td> <font color=#009900> 10                         </font>
+
+<tr><td> <font color=#009900> ((compute * 1) '(1 2 3 4)) </font>
+    <td> <font color=#009900> 24                         </font>
+
+</table>
+
+<br>
+
+In general, <font color=#009900> compute </font> takes two arguments.
+
+The first argument is a binary function <i>op</i>.
+
+The second argument is the identity element <i>id</i> of that function.  
+
+The following describes the behavior of <font color=#009900>compute</font>
+in the general case.
+
+<br><br>
+
+<table border="1"
+
+<tr><th>Input <th>Output
+
+<tr><td> <font color=#009900> ((compute op id) '(s1 s2 s3 ... sk))                             </font>
+    <td> Value of the function: <font color=#009900> (op s1 (op s2 (op s3 ... (op sk id)...))) </font>
+
+</table>
+
+
+<br><br>
+<hr>
+
+<!--  *************************************************************   -->
+
+<cite>Problem 2d (2 Points)</cite><br><br>
+
+Implement a function <font color=#009900> mylength </font> using <font
+color=#009900>compute</font> that computes the length of a list.
+
+The following examples illustrate the intended behaviour.
+
+<br><br>
+
+<table border="1"
+
+<tr><th>Input <th>Output
+
+<tr><td> <font color=#009900> (mylength '())      </font>
+    <td> <font color=#009900> 0                   </font>
+
+<tr><td> <font color=#009900> (mylength '(1))     </font>
+    <td> <font color=#009900> 1                   </font>
+
+<tr><td> <font color=#009900> (mylength '(1 2))   </font>
+    <td> <font color=#009900> 2                   </font>
+
+<tr><td> <font color=#009900> (mylength '(1 2 3)) </font>
+    <td> <font color=#009900> 3                   </font>
+
+<tr><td> <font color=#009900> (mylength '((1) (2) (3))) </font>
+    <td> <font color=#009900> 3                         </font>
+
+<tr><td> <font color=#009900> (mylength '((1) (2) (3 4 5))) </font>
+    <td> <font color=#009900> 3                             </font>
+
+<tr><td> <font color=#009900> (mylength 1 2 3)    </font>
+    <td> <font color=#990000> error               </font>
+
+</table>
+
+<br><br>
+<hr>
+
+
+<!--  *************************************************************   -->
+
+<cite>Problem 2e (2 Points)</cite><br><br>
+
+Implement a function <font color=#009900> myappend </font> using <font
+color=#009900>compute</font> that appends two lists.
+
+The following examples illustrate the intended behaviour.
+
+<br><br>
+
+<table border="1"
+
+<tr><th>Input <th>Output
+
+<tr><td> <font color=#009900> (myappend '() '())      </font>
+    <td> <font color=#009900> ()                      </font>
+
+<tr><td> <font color=#009900> (myappend '(1) '())     </font>
+    <td> <font color=#009900> (1)                     </font>
+
+<tr><td> <font color=#009900> (myappend '() '(1))     </font>
+    <td> <font color=#009900> (1)                     </font>
+
+<tr><td> <font color=#009900> (myappend '(1 2 3) '(4 5 6)) </font>
+    <td> <font color=#009900> (1 2 3 4 5 6)                </font>
+
+<tr><td> <font color=#009900> (myappend '(1 2 3) '((4) 5 6)) </font>
+    <td> <font color=#009900> (1 2 3 (4) 5 6)                </font>
+
+</table>
+
+<br><br>
+<hr>
+
+
+<!--  *************************************************************   -->
+
+<cite>Problem 2f (2 Points)</cite><br><br>
+
+Implement a function <font color=#009900> mymap </font> using <font
+color=#009900>compute</font>.
+
+The function <font color=#009900> mymap </font> takes two arguments.  The
+first argument is a unary function <i>proc</i>.  The second argument is a
+list <i>l</i>.
+
+<font color=#009900> mymap </font> applies <i>proc</i> element-wise to the
+elements of <i>l</i> and returns a list of results, in order.
+
+The following examples illustrate the intended behaviour.
+
+<br><br>
+
+<table border="1"
+
+<tr><th>Input <th>Output
+
+<tr><td> <font color=#009900> (mymap (lambda (n) (+ n n)) '())       </font>
+    <td> <font color=#009900> ()                                     </font>
+
+<tr><td> <font color=#009900> (mymap (lambda (n) (+ n n)) '(1 2 3 4))  </font>
+    <td> <font color=#009900> (2 4 6 8)                                </font>
+
+<tr><td> <font color=#009900> (mymap (lambda (n) (* n n)) '(1 2 3 4))  </font>
+    <td> <font color=#009900> (1 4 9 16)                               </font>
+
+</table>
+
+<br><br>
+<hr>
+
+
+<!--  *************************************************************   -->
+
+<cite>Problem 3 (2 Points)</cite><br><br>
+
+The examples above provide only a minimal set of test cases.  Write a
+comprehensive test suite to test your above implementations.
+
+We will use your test suite to test the submissions of all students in the
+class.  You will get more credit if your test cases expose bugs in others'
+implementations.
+
+The goal of this problem is to encourage you to write good test suites.
+
+<br><br>
+
+Write your test cases using the <a href="check.scm">check</a> method, as
+shown in the following examples.  The <a href="check.scm">check</a> method
+takes two arguments: a test case, and its expected result.
+
+<br><br>
+
+<table border="1"
+
+<tr><td> <font color=#009900> (check '(multisubst 'vanilla 'chocolate '(chocolate icecream)) '(vanilla icecream)) </font>
+<tr><td> <font color=#009900> (check '(sum '(1 2 3)) 6)       </font>
+<tr><td> <font color=#009900> (check '(mylength '(1 2 3)) 3)  </font>
+
+</table>
+
+<br>
+
+Please only include test cases that test code on valid inputs.  That is, if
+a function expects a list of atoms, please pass only a list of atoms to it.
+But not, say, an atom, or a list of lists.  The point is to make sure the
+function does the right thing on valid inputs.
+
+<br><br>
+<hr>
+
+
+
+
+<!--  ***********************************************************   -->
+
+<img src="../../../images/mailbox.gif" alt="[Mail]" align=middle border=OFF>
+<img src="../../../images/email.png" alt="[boyapati dot chandrasekhar at gmail dot com]" align=middle width=225 border=OFF>
+
+<!--  ***********************************************************   -->
+
+</body>

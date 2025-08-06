@@ -1,0 +1,1157 @@
+<head>
+<title>EECS 490: Programming Languages (Fall 2006)</title>
+
+  <style type="text/css">
+    <!--
+
+    a:link    {text-decoration: none; color: #0000E0}
+    a:visited {text-decoration: none; color: #0000E0}
+    a:active  {text-decoration: none; color: #0000E0}
+    a:hover   {text-decoration: none; color: #0096E0}
+
+    cite a:link    {font-style: normal; font-weight: bold; 
+                    text-decoration: none; color: #990000}
+    cite a:visited {font-style: normal; font-weight: bold; 
+                    text-decoration: none; color: #990000}
+    cite           {font-style: normal; font-weight: bold; 
+                    text-decoration: none; color: #990000}
+
+    table.items {
+        border: 0px;
+        background-color: #AAAAFF;
+    }
+
+    table.items tr.header td {
+        text-align: center;
+        background-color: #AAAAFF;
+        font-weight: bold;
+    }
+
+    table.items tr.header1 td {
+        text-align: center;
+        background-color: #CCCCFF;
+        font-weight: bold;
+    }
+
+    table.items tr.header2 td {
+        text-align: left;
+        background-color: #CCCCFF;
+        font-weight: bold;
+    }
+
+    table.items tr td {
+        background-color: #F0F0FF;
+        border: 0px;
+    }
+
+    --> 
+  </style>
+
+</head>
+
+<!--  *****************************************************************   -->
+<body bgcolor="#FFFFFF">
+<body>
+
+<h1><b>EECS 490: Programming Languages (Fall 2006)</b></h1>
+
+<!--  *****************************************************************   -->
+<cite>Basic Information</cite><br>
+
+<table border="1">
+<tr><td>Instructor              <td><a href="../..">Chandra Boyapati</a>
+<tr><td>GSI                     <td><a href="http://www.eecs.umich.edu/~pdarga">Paul Darga</a>
+<tr><td>Lectures                <td>M W 3:00-4:30, 3433 EECS
+<tr><td>Chandra's Office Hours  <td>M 4:30-5:30, 4628 CSE (or by appointment)
+<tr><td>Paul's Office Hours     <td>F 3:00-5:00, 4917 CSE / 1637 CSE (or by appointment)
+<tr><td>Credits                 <td>4
+
+<tr><td> <font color=#009900> For CS-ENGR and CS-LSA undergrads              </font>
+    <td> <font color=#009900> Counts as an upper-level CS technical elective </font>
+
+<tr><td> <font color=#009900> For CE undergrads                                         </font>
+    <td> <font color=#009900> Counts as a flexible technical elective and EECS elective </font>
+
+<tr><td> <font color=#009900> For CSE grads                      </font>
+    <td> <font color=#009900> Counts as a software kernel course </font>
+
+</table>
+<br>
+
+<!--  *****************************************************************   -->
+<cite>Course Overview</cite><br>
+
+<!--  
+The motivation behind this course is the need for reliable software.
+Software is rapidly becoming the foundation for our entire civil
+infrastructure.  All activities including transportation,
+telecommunications, energy, medicine, and banking rely on the correct
+working of software systems.  As software becomes more pervasive in our
+infrastructure, failures of software can cause more and more damage.  Hence
+the increasing need for reliable software.  Software reliability also has a
+significant impact on our economy.  Studies estimate that bugs in software
+cost businesses worldwide about $175 billion annually.  Making software
+reliable is one of the most important problems facing computer science
+today.  Making software reliable is also one of the most challenging
+problems, primarily because of the inherent complexity of large software
+systems.  <br><br>
+-->
+
+This course covers basic and advanced topics in programming languages, and
+shows how good programming languages and tools can significantly improve
+the reliability of software systems.  <br><br>
+
+<!--  *****************************************************************   -->
+<cite>Recommended Textbooks</cite><br>
+
+Benjamin Pierce: 
+<a href="http://mitpress.mit.edu/catalog/item/default.asp?sid=AF8E3C7B-6915-4259-A53C-6D78276FF0AC&ttype=2&tid=8738">
+Types and Programming Languages
+</a>
+<br>
+
+Franklyn Turbak & David Gifford:
+<a href="http://cs.wellesley.edu/~fturbak/pubs/6821/">
+Design Concepts in Programming Languages
+</a>
+<br>
+
+Glynn Winskel: 
+<a href="http://mitpress.mit.edu/catalog/item/default.asp?sid=AF075863-DB5F-4253-9E58-6EEF8B5F6077&ttype=2&tid=7054">
+Formal Semantics of Programming Languages
+</a>
+<br>
+
+<br>
+
+<!--  *****************************************************************   -->
+<cite>Grading</cite><br>
+
+70%: Individual Written and Programming Assignments <br>
+30%: Final Exam <br>
+<br>
+
+<!--  *****************************************************************   -->
+
+<cite>Schedule</cite><br>
+<br>
+
+<!--  *****************************************************************   -->
+
+<div align="left">
+<table class="items" border=0 cellspacing=2 cellpadding=4>
+
+<!--  ***********************************************************   -->
+
+<tr class="header"><td colspan="3">Introduction</td></tr>
+
+<!--  ***********************************************************   -->
+
+<tr class="header2">
+  <td>L1</td>
+  <td>Sep 06</td> <td>
+
+<!--  -----------------------------------------------------------   -->
+      Course Overview
+<!--  -----------------------------------------------------------   -->
+
+</td></tr>
+<tr> <td> &nbsp; </td> <td> &nbsp; </td> <td> 
+<cite>Optional Reading</cite><br>
+
+<!--  -----------------------------------------------------------   -->
+      <a href="../papers/Hoare_Hints.pdf">
+      Hoare: Hints for Programming Language Design
+      </a><br>
+      <a href="../papers/Wegner_History.pdf">
+      Wegner: Programming Languages - The First 25 Years
+      </a><br>
+    
+      <a href="../papers/Wirth_Design.pdf">
+      Wirth: On the Design of Programming Languages
+      </a><br>
+    
+<!--  -----------------------------------------------------------   -->
+
+</td> </tr>
+
+<!--  ***********************************************************   -->
+
+<tr class="header"><td colspan="3">Functional Programming</td></tr>
+
+<!--  ***********************************************************   -->
+
+<tr class="header2">
+  <td>L2</td>
+  <td>Sep 11</td> <td>
+
+<!--  -----------------------------------------------------------   -->
+      Scheme
+<!--  -----------------------------------------------------------   -->
+
+</td></tr>
+<tr> <td> &nbsp; </td> <td> &nbsp; </td> <td> 
+<cite>Reading</cite><br>
+
+<!--  -----------------------------------------------------------   -->
+      <a href="./assignments/scheme_examples.scm">
+      Scheme examples discussed in class
+      </a><br>
+      <a href="http://www.psrg.lcs.mit.edu/6821/handouts/scheme-suppl.pdf">
+      Turbak & Gifford: Scheme+ Tutorial: Appendix A.1
+      </a><br>
+<!--  -----------------------------------------------------------   -->
+
+</td> </tr>
+<tr> <td> &nbsp; </td> <td> &nbsp; </td> <td> 
+<cite>Software</cite><br>
+
+<!--  -----------------------------------------------------------   -->
+      <a href="http://www.gnu.org/software/mit-scheme/">
+      MIT/GNU Scheme 
+      </a>
+      (Please use 
+      <a href="http://ftp.gnu.org/gnu/mit-scheme/testing.pkg/7.7.90/">
+      Scheme version 7.7.90</a>.)
+      <br>
+<!--  -----------------------------------------------------------   -->
+
+</td> </tr>
+<tr> <td> &nbsp; </td> <td> &nbsp; </td> <td> 
+<cite>Optional Reading</cite><br>
+
+<!--  -----------------------------------------------------------   -->
+      <a href="../papers/Abelson_Scheme.pdf">
+      Abelson et al: Revised Report on the Algorithmic Language Scheme
+      </a><br>
+      <a href="http://mitpress.mit.edu/sicp/full-text/book/book.html">
+      Abelson & Sussman: Structure and Interpretation of Computer Programs
+      </a><br>
+<!--  -----------------------------------------------------------   -->
+
+</td> </tr>
+
+<!--  ***********************************************************   -->
+
+<tr class="header2">
+  <td>L3</td>
+  <td>Sep 13</td> <td>
+
+<!--  -----------------------------------------------------------   -->
+      Scheme
+<!--  -----------------------------------------------------------   -->
+
+</td> </tr>
+<tr> <td> &nbsp; </td> <td> &nbsp; </td> <td> 
+<cite>Reading</cite><br>
+
+<!--  -----------------------------------------------------------   -->
+      <a href="./assignments/scheme_examples.scm">
+      Scheme examples discussed in class
+      </a><br>
+      <a href="http://www.psrg.lcs.mit.edu/6821/handouts/scheme-suppl.pdf">
+      Turbak & Gifford: Scheme+ Tutorial: Appendix A.1
+      </a><br>
+<!--  -----------------------------------------------------------   -->
+
+</td> </tr>
+<tr> <td> &nbsp; </td> <td> &nbsp; </td> <td> 
+<cite>Software</cite><br>
+
+<!--  -----------------------------------------------------------   -->
+      <a href="http://www.gnu.org/software/mit-scheme/">
+      MIT/GNU Scheme 
+      </a>
+      (Please use 
+      <a href="http://ftp.gnu.org/gnu/mit-scheme/testing.pkg/7.7.90/">
+      Scheme version 7.7.90</a>.)
+      <br>
+<!--  -----------------------------------------------------------   -->
+
+</td> </tr>
+<tr> <td> &nbsp; </td> <td> &nbsp; </td> <td> 
+<cite>Optional Reading</cite><br>
+
+<!--  -----------------------------------------------------------   -->
+      <a href="../papers/Abelson_Scheme.pdf">
+      Abelson et al: Revised Report on the Algorithmic Language Scheme
+      </a><br>
+      <a href="http://mitpress.mit.edu/sicp/full-text/book/book.html">
+      Abelson & Sussman: Structure and Interpretation of Computer Programs
+      </a><br>
+<!--  -----------------------------------------------------------   -->
+
+</td> </tr>
+
+
+<!--  ***********************************************************   -->
+
+<tr class="header2">
+  <td>L4</td>
+  <td>Sep 18</td> <td>
+
+<!--  -----------------------------------------------------------   -->
+      Scheme+
+<!--  -----------------------------------------------------------   -->
+
+</td> </tr>
+<tr> <td> &nbsp; </td> <td> &nbsp; </td> <td> 
+<cite>Reading</cite><br>
+
+<!--  -----------------------------------------------------------   -->
+      <a href="http://www.psrg.lcs.mit.edu/6821/handouts/scheme-suppl.pdf">
+      Turbak & Gifford: Scheme+ Tutorial: Appendix A.2
+      </a><br>
+<!--  -----------------------------------------------------------   -->
+
+</td> </tr>
+<tr> <td> &nbsp; </td> <td> &nbsp; </td> <td> 
+<cite>Software</cite><br>
+
+<!--  -----------------------------------------------------------   -->
+      <a href="assignments/scheme+.scm">
+      Scheme+
+      </a>
+      (This only works with MIT/GNU Scheme version 7.7.90.)
+      <br>
+<!--  -----------------------------------------------------------   -->
+
+</td> </tr>
+<tr> <td> &nbsp; </td> <td> &nbsp; </td> <td> 
+<cite>Handout</cite><br>
+
+<!--  -----------------------------------------------------------   -->
+      <a href="assignments/assignment1.html">
+      Assignment 1
+      </a><br>
+<!--  -----------------------------------------------------------   -->
+
+</td> </tr>
+
+
+<!--  ***********************************************************   -->
+
+<tr class="header2">
+  <td>L5</td>
+  <td>Sep 20</td> <td>
+
+<!--  -----------------------------------------------------------   -->
+      Syntax and Semantics
+<!--  -----------------------------------------------------------   -->
+
+</td> </tr>
+<tr> <td> &nbsp; </td> <td> &nbsp; </td> <td> 
+<cite>Reading</cite><br>
+
+<!--  -----------------------------------------------------------   -->
+      Turbak & Gifford: Chapters 1-3
+<!--  -----------------------------------------------------------   -->
+
+</td> </tr>
+
+
+<!--  ***********************************************************   -->
+
+<tr class="header2">
+  <td>L6</td>
+  <td>Sep 25</td> <td>
+
+<!--  -----------------------------------------------------------   -->
+      Syntax and Semantics
+<!--  -----------------------------------------------------------   -->
+
+</td> </tr>
+<tr> <td> &nbsp; </td> <td> &nbsp; </td> <td> 
+<cite>Reading</cite><br>
+
+<!--  -----------------------------------------------------------   -->
+      Turbak & Gifford: Chapters 1-3
+<!--  -----------------------------------------------------------   -->
+
+</td> </tr>
+<tr> <td> &nbsp; </td> <td> &nbsp; </td> <td> 
+<cite>Handout</cite><br>
+
+<!--  -----------------------------------------------------------   -->
+      <a href="assignments/assignment2.html">
+      Assignment 2
+      </a><br>
+<!--  -----------------------------------------------------------   -->
+
+</td> </tr>
+<tr> <td> &nbsp; </td> <td> &nbsp; </td> <td> 
+<cite>Homework Due</cite><br>
+
+<!--  -----------------------------------------------------------   -->
+      <font color=#009900>
+      Assignment 1
+      </font><br>
+<!--  -----------------------------------------------------------   -->
+
+</td> </tr>
+
+<!--  ***********************************************************   -->
+
+<tr class="header2">
+  <td>L7</td>
+  <td>Sep 27</td> <td>
+
+<!--  -----------------------------------------------------------   -->
+      Lambda Calculus
+<!--  -----------------------------------------------------------   -->
+
+</td> </tr>
+<tr> <td> &nbsp; </td> <td> &nbsp; </td> <td> 
+<cite>Reading</cite><br>
+
+<!--  -----------------------------------------------------------   -->
+      Pierce: Chapter 5 (Sections 5.1-5.2)
+<!--  -----------------------------------------------------------   -->
+
+</td> </tr>
+
+<!--  ***********************************************************   -->
+
+<tr class="header2">
+  <td>L8</td>
+  <td>Oct 02</td> <td>
+
+<!--  -----------------------------------------------------------   -->
+      Lambda Calculus
+<!--  -----------------------------------------------------------   -->
+
+</td> </tr>
+<tr> <td> &nbsp; </td> <td> &nbsp; </td> <td> 
+<cite>Reading</cite><br>
+
+<!--  -----------------------------------------------------------   -->
+      Pierce: Chapter 5 (Sections 5.1-5.2)
+<!--  -----------------------------------------------------------   -->
+
+</td> </tr>
+<tr> <td> &nbsp; </td> <td> &nbsp; </td> <td> 
+<cite>Handout</cite><br>
+
+<!--  -----------------------------------------------------------   -->
+      <a href="assignments/assignment3.html">
+      Assignment 3
+      </a><br>
+<!--  -----------------------------------------------------------   -->
+
+</td> </tr>
+<tr> <td> &nbsp; </td> <td> &nbsp; </td> <td> 
+<cite>Homework Due</cite><br>
+
+<!--  -----------------------------------------------------------   -->
+      <font color=#009900>
+      Assignment 2
+      </font><br>
+<!--  -----------------------------------------------------------   -->
+
+</td> </tr>
+
+<!--  ***********************************************************   -->
+
+<tr class="header"><td colspan="3">Object-Oriented Programming and Type Systems</td></tr>
+
+<!--  ***********************************************************   -->
+
+<tr class="header2">
+  <td>L9</td>
+  <td>Oct 04</td> <td>
+
+<!--  -----------------------------------------------------------   -->
+      Syntax & Semantics
+<!--  -----------------------------------------------------------   -->
+
+</td> </tr>
+<tr> <td> &nbsp; </td> <td> &nbsp; </td> <td> 
+<cite>Reading</cite><br>
+
+<!--  -----------------------------------------------------------   -->
+      Pierce: Chapter 3 (Sections 3.1-3.5)    
+<!--  -----------------------------------------------------------   -->
+
+</td> </tr>
+
+<!--  ***********************************************************   -->
+
+<tr class="header2">
+  <td>L10</td>
+  <td>Oct 09</td> <td>
+
+<!--  -----------------------------------------------------------   -->
+      Semantics
+<!--  -----------------------------------------------------------   -->
+
+</td> </tr>
+<tr> <td> &nbsp; </td> <td> &nbsp; </td> <td> 
+<cite>Reading</cite><br>
+
+<!--  -----------------------------------------------------------   -->
+      Pierce: Chapter 3 (Sections 3.4-3.5)    
+<!--  -----------------------------------------------------------   -->
+
+</td> </tr>
+<tr> <td> &nbsp; </td> <td> &nbsp; </td> <td> 
+<cite>Handout</cite><br>
+
+<!--  -----------------------------------------------------------   -->
+      <a href="assignments/assignment4.html">
+      Assignment 4
+      </a><br>
+<!--  -----------------------------------------------------------   -->
+
+</td> </tr>
+<tr> <td> &nbsp; </td> <td> &nbsp; </td> <td> 
+<cite>Homework Due</cite><br>
+
+<!--  -----------------------------------------------------------   -->
+      <font color=#009900>
+      Assignment 3
+      </font><br>
+<!--  -----------------------------------------------------------   -->
+
+</td> </tr>
+
+<!--  ***********************************************************   -->
+
+<tr class="header2">
+  <td>L11</td>
+  <td>Oct 11</td> <td>
+
+<!--  -----------------------------------------------------------   -->
+      Type Systems
+<!--  -----------------------------------------------------------   -->
+
+</td> </tr>
+<tr> <td> &nbsp; </td> <td> &nbsp; </td> <td> 
+<cite>Reading</cite><br>
+
+<!--  -----------------------------------------------------------   -->
+      Pierce: Chapter 8
+<!--  -----------------------------------------------------------   -->
+
+</td> </tr>
+<tr> <td> &nbsp; </td> <td> &nbsp; </td> <td> 
+<cite>Optional Reading</cite><br>
+
+<!--  -----------------------------------------------------------   -->
+      Pierce: Chapter 9
+<!--  -----------------------------------------------------------   -->
+
+</td> </tr>
+<tr> <td> &nbsp; </td> <td> &nbsp; </td> <td> 
+<cite>Handout</cite><br>
+
+<!--  -----------------------------------------------------------   -->
+      <a href="assignments/assignment5.html">
+      Assignment 5
+      </a><br>
+<!--  -----------------------------------------------------------   -->
+
+</td> </tr>
+
+<!--  ***********************************************************   -->
+
+<tr class="header1"><td colspan="3">
+      <font color=#009900> Fall Study Break </font><br>
+</td></tr>
+
+<!--  ***********************************************************   -->
+
+<tr class="header2">
+  <td>L12</td>
+  <td>Oct 23</td> <td>
+
+<!--  -----------------------------------------------------------   -->
+      Type System for Java Bytecodes
+<!--  -----------------------------------------------------------   -->
+
+</td> </tr>
+<tr> <td> &nbsp; </td> <td> &nbsp; </td> <td> 
+<cite>Reading</cite><br>
+
+<!--  -----------------------------------------------------------   -->
+      <a href="../papers/Abadi_JVM.pdf">
+      Stata & Abadi: A Type System for Java Bytecode Subroutines (POPL 1998): Sections 1-4, 8, 9, 10
+      </a><br>
+<!--  -----------------------------------------------------------   -->
+
+</td> </tr>
+<tr> <td> &nbsp; </td> <td> &nbsp; </td> <td> 
+<cite>Optional Reading</cite><br>
+
+<!--  -----------------------------------------------------------   -->
+      <a href="../papers/Freund_JVM.pdf">
+      Freund & Mitchell: A Type System for the Java Bytecode Language 
+      and Verifier (JAR 2003)
+      </a><br>
+<!--  -----------------------------------------------------------   -->
+
+</td> </tr>
+<tr> <td> &nbsp; </td> <td> &nbsp; </td> <td> 
+<cite>Homework Due</cite><br>
+
+<!--  -----------------------------------------------------------   -->
+      <font color=#009900>
+      Assignment 4
+      </font><br>
+<!--  -----------------------------------------------------------   -->
+
+</td> </tr>
+
+<!--  ***********************************************************   -->
+
+<tr class="header2">
+  <td>
+      <font color=#009900>
+      --
+      </font><br>
+  </td>
+  <td>
+      <font color=#009900>
+      Oct 25
+      </font><br>
+  </td> <td>
+
+<!--  -----------------------------------------------------------   -->
+      <font color=#009900>
+      No Class
+      </font><br>
+<!--  -----------------------------------------------------------   -->
+
+</td></tr>
+<tr> <td> &nbsp; </td> <td> &nbsp; </td> <td> 
+<cite>Optional Reading</cite><br>
+
+<!--  -----------------------------------------------------------   -->
+      Check out 
+      <a href="http://www.oopsla.org/2006/submission/research_papers/research_papers.html">OOPSLA 2006</a>
+
+<!--  -----------------------------------------------------------   -->
+
+</td> </tr>
+
+<!--  ***********************************************************   -->
+
+<tr class="header2">
+  <td>L13</td>
+  <td>Oct 30</td> <td>
+
+<!--  -----------------------------------------------------------   -->
+      Java Tutorial
+<!--  -----------------------------------------------------------   -->
+
+</td> </tr>
+<tr> <td> &nbsp; </td> <td> &nbsp; </td> <td> 
+<cite>Optional Reading</cite><br>
+
+<!--  -----------------------------------------------------------   -->
+      <a href="http://java.sun.com/docs/books/jls/index.html">Gosling et al: The Java Language Specification, Third Edition</a>
+<!--  -----------------------------------------------------------   -->
+
+</td> </tr>
+
+
+<!--  ***********************************************************   -->
+
+<tr class="header2">
+  <td>L14</td>
+  <td>Nov 01</td> <td>
+
+<!--  -----------------------------------------------------------   -->
+      Type System for Java
+<!--  -----------------------------------------------------------   -->
+
+</td> </tr>
+<tr> <td> &nbsp; </td> <td> &nbsp; </td> <td> 
+<cite>Reading</cite><br>
+
+<!--  -----------------------------------------------------------   -->
+      <a href="../papers/Igarashi_FJ.pdf">
+      Igarashi et al: FeatherWeight Java (TOPLAS 2001): Sections 1-2
+      </a><br>
+<!--  -----------------------------------------------------------   -->
+
+</td> </tr>
+<tr> <td> &nbsp; </td> <td> &nbsp; </td> <td> 
+<cite>Optional Reading</cite><br>
+
+<!--  -----------------------------------------------------------   -->
+      <a href="../papers/Liskov_Subtyping.pdf">
+      Liskov & Wing: A Behavioral Notion of Subtyping (TOPLAS 1994)
+      </a><br>
+<!--  -----------------------------------------------------------   -->
+
+</td> </tr>
+<tr> <td> &nbsp; </td> <td> &nbsp; </td> <td> 
+<cite>Homework Due</cite><br>
+
+<!--  -----------------------------------------------------------   -->
+      <font color=#009900>
+      Assignment 5
+      </font><br>
+<!--  -----------------------------------------------------------   -->
+
+</td> </tr>
+
+<!--  ***********************************************************   -->
+
+<tr class="header2">
+  <td>L15</td>
+  <td>Nov 06</td> <td>
+
+<!--  -----------------------------------------------------------   -->
+      Type System for Java
+<!--  -----------------------------------------------------------   -->
+
+</td> </tr>
+<tr> <td> &nbsp; </td> <td> &nbsp; </td> <td> 
+<cite>Reading</cite><br>
+
+<!--  -----------------------------------------------------------   -->
+      <a href="../papers/Igarashi_FJ.pdf">
+      Igarashi et al: FeatherWeight Java (TOPLAS 2001): Sections 1-2
+      </a><br>
+<!--  -----------------------------------------------------------   -->
+
+</td> </tr>
+<tr> <td> &nbsp; </td> <td> &nbsp; </td> <td> 
+<cite>Optional Reading</cite><br>
+
+<!--  -----------------------------------------------------------   -->
+      <a href="../papers/Cardelli_Types.pdf">
+      Cardelli: Type Systems 
+      </a><br>
+<!--  -----------------------------------------------------------   -->
+
+</td> </tr>
+<tr> <td> &nbsp; </td> <td> &nbsp; </td> <td> 
+<cite>Handout</cite><br>
+
+<!--  -----------------------------------------------------------   -->
+      <a href="assignments/assignment6.html">
+      Assignment 6
+      </a><br>
+<!--  -----------------------------------------------------------   -->
+
+</td> </tr>
+
+<!--  ***********************************************************   -->
+
+<tr class="header2">
+  <td>L16</td>
+  <td>Nov 08</td> <td>
+
+<!--  -----------------------------------------------------------   -->
+      Type System for Generic Java
+<!--  -----------------------------------------------------------   -->
+
+</td> </tr>
+<tr> <td> &nbsp; </td> <td> &nbsp; </td> <td> 
+<cite>Reading</cite><br>
+
+<!--  -----------------------------------------------------------   -->
+      <a href="../papers/Igarashi_FJ.pdf">
+      Igarashi et al: FeatherWeight Java (TOPLAS 2001): Sections 3-6
+      </a><br>
+<!--  -----------------------------------------------------------   -->
+
+</td> </tr>
+<tr> <td> &nbsp; </td> <td> &nbsp; </td> <td> 
+<cite>Optional Reading</cite><br>
+
+<!--  -----------------------------------------------------------   -->
+      <a href="../papers/Myers_PolyJ.pdf">
+      Myers et al: Parameterized Types for Java (POPL 1997)
+      </a><br>
+<!--  -----------------------------------------------------------   -->
+
+</td> </tr>
+
+<!--  ***********************************************************   -->
+
+<tr class="header2">
+  <td>
+      <font color=#009900>
+      --
+      </font><br>
+  </td>
+  <td>
+      <font color=#009900>
+      Nov 13
+      </font><br>
+  </td> <td>
+
+<!--  -----------------------------------------------------------   -->
+      <font color=#009900>
+      No Class
+      </font><br>
+<!--  -----------------------------------------------------------   -->
+
+</td></tr>
+<tr> <td> &nbsp; </td> <td> &nbsp; </td> <td> 
+<cite>Optional Reading</cite><br>
+
+<!--  -----------------------------------------------------------   -->
+      Check out 
+      <a href="http://portal.acm.org/toc.cfm?id=1133981">PLDI 2006</a>, 
+      <a href="http://portal.acm.org/toc.cfm?id=1111037">POPL 2006</a>.
+
+<!--  -----------------------------------------------------------   -->
+
+</td> </tr>
+
+<!--  ***********************************************************   -->
+
+<tr class="header2">
+  <td>L17</td>
+  <td>Nov 15</td> <td>
+
+<!--  -----------------------------------------------------------   -->
+      Type System for Generic Java
+<!--  -----------------------------------------------------------   -->
+
+</td> </tr>
+<tr> <td> &nbsp; </td> <td> &nbsp; </td> <td> 
+<cite>Reading</cite><br>
+
+<!--  -----------------------------------------------------------   -->
+      <a href="../papers/Igarashi_FJ.pdf">
+      Igarashi et al: FeatherWeight Java (TOPLAS 2001): Sections 3-6
+      </a><br>
+<!--  -----------------------------------------------------------   -->
+
+</td> </tr>
+<tr> <td> &nbsp; </td> <td> &nbsp; </td> <td> 
+<cite>Optional Reading</cite><br>
+
+<!--  -----------------------------------------------------------   -->
+      <a href="../papers/Kennedy_Generics.pdf">
+      Kennedy et al: Design and Implementation of Generics for the .NET
+      Common Language Runtime (PLDI 2001)
+      </a><br>
+<!--  -----------------------------------------------------------   -->
+
+</td> </tr>
+<tr> <td> &nbsp; </td> <td> &nbsp; </td> <td> 
+<cite>Handout</cite><br>
+
+<!--  -----------------------------------------------------------   -->
+      <a href="assignments/assignment7.html">
+      Assignment 7
+      </a><br>
+<!--  -----------------------------------------------------------   -->
+
+</td> </tr>
+<tr> <td> &nbsp; </td> <td> &nbsp; </td> <td> 
+<cite>Homework Due</cite><br>
+
+<!--  -----------------------------------------------------------   -->
+      <font color=#009900>
+      Assignment 6
+      </font><br>
+<!--  -----------------------------------------------------------   -->
+
+</td> </tr>
+
+<!--  ***********************************************************   -->
+
+<tr class="header2">
+  <td>L18</td>
+  <td>Nov 20</td> <td>
+
+<!--  -----------------------------------------------------------   -->
+      Types for Information Flow Control
+<!--  -----------------------------------------------------------   -->
+
+</td> </tr>
+<tr> <td> &nbsp; </td> <td> &nbsp; </td> <td> 
+<cite>Reading</cite><br>
+
+<!--  -----------------------------------------------------------   -->
+      <a href="../papers/Myers_JFlow_SOSP.pdf">
+       Myers & Liskov: A Decentralized Model for Information Flow Control (SOSP 1997)
+      </a><br>
+<!--  -----------------------------------------------------------   -->
+
+</td> </tr>
+<tr> <td> &nbsp; </td> <td> &nbsp; </td> <td> 
+<cite>Optional Reading</cite><br>
+
+<!--  -----------------------------------------------------------   -->
+      <a href="../papers/Fahndrich_Vault.pdf">
+      DeLine & Fahndrich: Enforcing High Level Protocols in Low-Level Software (PLDI 2001)
+      </a><br>
+<!--  -----------------------------------------------------------   -->
+
+</td> </tr>
+
+<!--  ***********************************************************   -->
+
+<tr class="header2">
+  <td>L19</td>
+  <td>Nov 22</td> <td>
+
+<!--  -----------------------------------------------------------   -->
+      Concurrent Programming in Java
+<!--  -----------------------------------------------------------   -->
+
+</td> </tr>
+<tr> <td> &nbsp; </td> <td> &nbsp; </td> <td> 
+<cite>Reading</cite><br>
+
+<!--  -----------------------------------------------------------   -->
+      <a href="http://java.sun.com/docs/books/jls/third_edition/html/memory.html">
+      Gosling et al: The Java Language Specification: Chapter 17
+      </a><br>      
+<!--  -----------------------------------------------------------   -->
+
+</td> </tr>
+<tr> <td> &nbsp; </td> <td> &nbsp; </td> <td> 
+<cite>Optional Reading</cite><br>
+
+<!--  -----------------------------------------------------------   -->
+      <a href="../papers/Pugh_MemoryModel.pdf">
+      Manson & Pugh: The Java Memory Model (JavaOne 2004)
+      </a><br>
+<!--  -----------------------------------------------------------   -->
+
+</td> </tr>
+
+<!--  ***********************************************************   -->
+
+<tr class="header1"><td colspan="3">
+      <font color=#009900> Happy Thanksgiving! </font><br>
+</td></tr>
+
+<!--  ***********************************************************   -->
+
+<tr class="header2">
+  <td>L20</td>
+  <td>Nov 27</td> <td>
+
+<!--  -----------------------------------------------------------   -->
+      Types for Preventing Data Races
+<!--  -----------------------------------------------------------   -->
+
+</td> </tr>
+<tr> <td> &nbsp; </td> <td> &nbsp; </td> <td> 
+<cite>Reading</cite><br>
+
+<!--  -----------------------------------------------------------   -->
+      <a href="../papers/Boyapati_Races.pdf">
+      Boyapati & Rinard: A Parameterized Type System for Race-Free Java
+      Programs (OOPSLA 2001)
+      </a><br>
+<!--  -----------------------------------------------------------   -->
+
+</td> </tr>
+<tr> <td> &nbsp; </td> <td> &nbsp; </td> <td> 
+<cite>Optional Reading</cite><br>
+
+<!--  -----------------------------------------------------------   -->
+      <a href="../papers/Boyapati_SafeJava.pdf">
+      Boyapati: SafeJava: A Unified Type System for Safe Programming (MIT 2004): Chapters 2-4
+      </a><br>
+<!--  -----------------------------------------------------------   -->
+
+</td> </tr>
+
+<!--  ***********************************************************   -->
+
+<tr class="header2">
+  <td>L21</td>
+  <td>Nov 29</td> <td>
+
+<!--  -----------------------------------------------------------   -->
+      Type Safety for Legacy Code
+<!--  -----------------------------------------------------------   -->
+
+</td> </tr>
+<tr> <td> &nbsp; </td> <td> &nbsp; </td> <td> 
+<cite>Reading</cite><br>
+
+<!--  -----------------------------------------------------------   -->
+      <a href="../papers/Necula_CCured.pdf">
+      Necula: CCured: Type-Safe Retrofitting of Legacy Code (POPL 2002)
+      </a><br>
+<!--  -----------------------------------------------------------   -->
+
+</td> </tr>
+<tr> <td> &nbsp; </td> <td> &nbsp; </td> <td> 
+<cite>Optional Reading</cite><br>
+
+<!--  -----------------------------------------------------------   -->
+      <a href="../papers/Foster_FormatStrings.pdf">
+      Shankar et al: Detecting Format-String Vulnerabilities with Type Qualifiers
+      (Usenix Security 2001)
+      </a><br>
+<!--  -----------------------------------------------------------   -->
+
+</td> </tr>
+<tr> <td> &nbsp; </td> <td> &nbsp; </td> <td> 
+<cite>Homework Due</cite><br>
+
+<!--  -----------------------------------------------------------   -->
+      <font color=#009900>
+      Assignment 7
+      </font><br>
+<!--  -----------------------------------------------------------   -->
+
+</td> </tr>
+
+<!--  ***********************************************************   -->
+
+<tr class="header"><td colspan="3">Program Verification</td></tr>
+
+<!--  ***********************************************************   -->
+
+<tr class="header2">
+  <td>L22</td>
+  <td>Dec 04</td> <td>
+
+<!--  -----------------------------------------------------------   -->
+      Axiomatic Semantics
+<!--  -----------------------------------------------------------   -->
+
+</td> </tr>
+<tr> <td> &nbsp; </td> <td> &nbsp; </td> <td> 
+<cite>Reading</cite><br>
+
+<!--  -----------------------------------------------------------   -->
+      Winskel: Chapters 2, 6.1-6.4 <br>
+<!--  -----------------------------------------------------------   -->
+
+</td> </tr>
+<tr> <td> &nbsp; </td> <td> &nbsp; </td> <td> 
+<cite>Optional Reading</cite><br>
+
+<!--  -----------------------------------------------------------   -->
+      <a href="../papers/Floyd_Meaning.pdf">
+      Floyd:   Assigning Meaning to Programs (Symposium in Applied Mathematics 1967)
+      </a><br>
+      <a href="../papers/Hoare_Axioms.pdf">
+      Hoare:   An Axiomatic Basis for Computer Programming (CACM 1969)
+      </a><br>
+<!--  -----------------------------------------------------------   -->
+
+</td> </tr>
+
+<!--  ***********************************************************   -->
+
+<tr class="header2">
+  <td>L23</td>
+  <td>Dec 06</td> <td>
+
+<!--  -----------------------------------------------------------   -->
+      Axiomatic Semantics
+<!--  -----------------------------------------------------------   -->
+
+</td> </tr>
+<tr> <td> &nbsp; </td> <td> &nbsp; </td> <td> 
+<cite>Reading</cite><br>
+
+<!--  -----------------------------------------------------------   -->
+      Winskel: Chapters 6.5-6.7, 7.1-7.6 <br>
+<!--  -----------------------------------------------------------   -->
+
+</td> </tr>
+<tr> <td> &nbsp; </td> <td> &nbsp; </td> <td> 
+<cite>Optional Reading</cite><br>
+
+<!--  -----------------------------------------------------------   -->
+      <a href="../papers/Hoare_Proof.pdf">
+      Hoare:   Proof of a Program FIND (CACM 1971)
+      </a><br>
+      <a href="../papers/Dijkstra_GuardedCommands.pdf">
+      Dijkstra: Guarded Commands, Nondeterminancy and Formal Derivation
+      of Programs (CACM 1975)
+      </a><br>
+<!--  -----------------------------------------------------------   -->
+
+</td> </tr>
+<tr> <td> &nbsp; </td> <td> &nbsp; </td> <td> 
+<cite>Handout</cite><br>
+
+<!--  -----------------------------------------------------------   -->
+      <a href="assignments/assignment8.pdf">
+      Assignment 8
+      </a><br>
+<!--  -----------------------------------------------------------   -->
+
+</td> </tr>
+
+
+<!--  ***********************************************************   -->
+
+<tr class="header2">
+  <td>L24</td>
+  <td>Dec 11</td> <td>
+
+<!--  -----------------------------------------------------------   -->
+      Verifying Program Properties Using Theorem Provers 
+<!--  -----------------------------------------------------------   -->
+
+</td> </tr>
+<tr> <td> &nbsp; </td> <td> &nbsp; </td> <td> 
+<cite>Reading</cite><br>
+
+<!--  -----------------------------------------------------------   -->
+      <a href="../papers/Flanagan_ESC.pdf">
+      Flanagan et al: Extended Static Checking for Java (PLDI 2002)
+      </a><br>
+      <a href="../papers/Necula_PCC.pdf">
+      Necula et al: Safe Kernel Extensions Without Run-Time Checking (OSDI 1996)
+      </a><br>
+<!--  -----------------------------------------------------------   -->
+
+</td> </tr>
+
+<!--  ***********************************************************   -->
+
+<tr class="header"><td colspan="3">Conclusions</td></tr>
+
+<!--  ***********************************************************   -->
+
+<tr class="header2">
+  <td>L25</td>
+  <td>Dec 13</td> <td>
+
+<!--  -----------------------------------------------------------   -->
+      Conclusions
+<!--  -----------------------------------------------------------   -->
+
+</td> </tr>
+<tr> <td> &nbsp; </td> <td> &nbsp; </td> <td> 
+<cite>Homework Due</cite><br>
+
+<!--  -----------------------------------------------------------   -->
+      <font color=#009900>
+      Assignment 8
+      </font><br>
+<!--  -----------------------------------------------------------   -->
+
+</td> </tr>
+
+<!--  ***********************************************************   -->
+
+<tr class="header"><td colspan="3">Final Exam: Dec 15, 4pm-6pm, 3427 EECS (<a href="exams/finalexam.pdf">Exam</a>) </td></tr>
+
+<!--  ***********************************************************   -->
+
+</table>
+</div>
+
+<br><br>
+
+
+<!--  *****************************************************************   -->
+
+<img src="../../images/mailbox.gif" alt="[Mail]" align=middle border=OFF>
+<img src="../../images/email.png" alt="[boyapati dot chandrasekhar at gmail dot com]" align=middle width=225 border=OFF>
+
+<!--  *****************************************************************   -->
+
+</body>

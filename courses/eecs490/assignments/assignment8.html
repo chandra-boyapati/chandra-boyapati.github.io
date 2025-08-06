@@ -1,0 +1,136 @@
+<head>
+<title>EECS 490: Programming Languages (Fall 2006)</title>
+
+  <style type="text/css">
+    <!--
+
+    a:link    {text-decoration: none; color: #0000E0}
+    a:visited {text-decoration: none; color: #0000E0}
+    a:active  {text-decoration: none; color: #0000E0}
+    a:hover   {text-decoration: none; color: #0096E0}
+
+    cite a:link    {font-style: normal; font-weight: bold; 
+                    text-decoration: none; color: #990000}
+    cite a:visited {font-style: normal; font-weight: bold; 
+                    text-decoration: none; color: #990000}
+    cite           {font-style: normal; font-weight: bold; 
+                    text-decoration: none; color: #990000}
+
+    table.items {
+        border: 0px;
+        background-color: #AAAAFF;
+    }
+
+    table.items tr.header td {
+        text-align: center;
+        background-color: #AAAAFF;
+        font-weight: bold;
+    }
+
+    table.items tr.header2 td {
+        text-align: left;
+        background-color: #F0F0FF;
+        font-weight: bold;
+    }
+
+    table.items tr.header3 td {
+        text-align: left;
+        background-color: #FFCCAA;
+        font-weight: bold;
+    }
+
+    table.items tr td {
+        background-color: #F0F0FF;
+        border: 0px;
+    }
+
+    --> 
+  </style>
+
+</head>
+
+<!--  *****************************************************************   -->
+
+<body bgcolor="#FFFFFF">
+
+<!--  *****************************************************************   -->
+
+<body>
+
+<h1><b>Assignment 8</b></h1>
+
+<hr>
+
+<!--  *************************************************************   -->
+
+<br>
+
+<font color=#009900> 
+<b>Due on Dec 13 before lecture.</b> 
+</font>
+
+<br><br>
+
+<font color=#009900> 
+<b>
+
+Please bring a hardcopy of your solutions to lecture.  Or submit a hardcopy
+of your solutions to Paul Darga before lecture.
+
+</b>
+</font>
+
+<br><br>
+<hr>
+
+<!--  ***********************************************************   -->
+
+<cite>Problem 1 (10 Points) </cite><br><br>
+
+Recall the verfication conditions for some simple commands discussed in
+class:
+
+<br><br>
+
+<table class="items" border=1 cellspacing=2 cellpadding=4>
+
+<tr class="header2"><td>VC(<font color=#009900>skip</font>, B) = <td>B
+
+<tr class="header2"><td>VC(<font color=#009900>c1; c2</font>, B) = <td>VC(c1, VC(c2, B))
+
+<tr class="header2"><td>VC(<font color=#009900>x:=e</font>, B) = <td>B[x&rarr;e]
+
+<tr class="header2"><td>VC(<font color=#009900>if b then c1 else c2</font>, B) = <td>(b &rArr; VC(c1, B)) &and; (&not;b &rArr; VC(c2, B))
+
+<tr class="header2"><td>VC(<font color=#009900>while</font><sub>I</sub> <font color=#009900>b do c</font>, B) = 
+<td>I &and; (&forall; x<sub>1</sub>..x<sub>n</sub>.  I &rArr; (b &rArr; VC(c, I) &and; &not;b &rArr; B)), 
+<i>where x<sub>1</sub>..x<sub>n</sub> are variables modified in c</i>
+
+</table>
+
+<br><br>
+
+
+Find an appropriate loop invariant and prove the partial correctness
+assertion for the following program, using the verification condition rules
+discussed in class shown above.
+
+<br><br>
+
+<b>
+{a = 1 &and; b = i} <font color=#009900>while (b != 0) do (b := b &minus; 1; a := 2 &times; a)</font> {a = 2<sup>i</sup>}
+</b>
+
+<br><br>
+<hr>
+
+<!--  ***********************************************************   -->
+
+<!--  ***********************************************************   -->
+
+<img src="../../../images/mailbox.gif" alt="[Mail]" align=middle border=OFF>
+<img src="../../../images/email.png" alt="[boyapati dot chandrasekhar at gmail dot com]" align=middle width=225 border=OFF>
+
+<!--  ***********************************************************   -->
+
+</body>

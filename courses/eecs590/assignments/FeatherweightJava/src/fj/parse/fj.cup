@@ -1,0 +1,260 @@
+package fj.parse;
+
+import java.util.LinkedList;
+import fj.ast.*;
+
+terminal CLASS, EXTENDS, SUPER, THIS, RETURN, NEW;
+terminal LBRACE, RBRACE, LPAREN, RPAREN, EQUALS, DOT, SEMI, COMMA;
+terminal String IDENTIFIER;
+
+/*
+ * Needed to correctly parse interactions with casting terms and
+ * field selection
+ */
+terminal CAST;
+
+non terminal LinkedList class_declaration_list;
+non terminal LinkedList field_list;
+non terminal LinkedList method_list;
+non terminal LinkedList ident_list, super_init, ident_list_rest;
+non terminal LinkedList field_init_list;
+non terminal LinkedList param_list, param_list_rest;
+non terminal LinkedList term_list, term_list_rest;
+
+non terminal Program program;
+non terminal ClassDecl class_declaration;
+non terminal Declaration decl;
+non terminal FieldInit field_init;
+non terminal Constructor constructor;
+non terminal Method method;
+non terminal Term term;
+non terminal Type type;
+
+/*
+ * These are necessary to correctly parse field selection and method
+ * invocation when dealing with type casts.  We bias in favor of field
+ * selection over casting (i.e.  (type) x.f means we cast x.f, not cast x
+ * then select f).
+ */
+precedence right CAST;
+precedence right DOT;
+
+/*
+ * This is necessary to bias in favor of method invocation on the trailing
+ * term of the program.
+ */
+precedence right RPAREN;
+
+start with program;
+
+/* Main elements */
+
+program ::=
+	class_declaration_list:l term:t
+	{:
+		RESULT = new Program(l, t);
+	:}
+;
+
+class_declaration ::=
+	CLASS IDENTIFIER:n EXTENDS type:e
+		LBRACE field_list:f constructor:c method_list:m RBRACE
+	{:
+		RESULT = new ClassDecl(n, e, f, c, m);
+	:}
+;
+
+decl ::=
+	type:c IDENTIFIER:v
+	{:
+		RESULT = new Declaration(c, v);
+	:}
+;
+
+type ::=
+	IDENTIFIER:i
+	{:
+		RESULT = new Type(i);
+	:}
+;
+
+constructor ::=
+	IDENTIFIER:c LPAREN param_list:p RPAREN LBRACE super_init:s
+		field_init_list:f RBRACE
+	{:
+		RESULT = new Constructor(c, p, s, f);
+	:}
+;
+
+super_init ::=
+	SUPER LPAREN ident_list:i RPAREN SEMI
+	{:
+		RESULT = i;
+	:}
+;
+
+field_init ::=
+	THIS DOT IDENTIFIER:s EQUALS IDENTIFIER:d
+	{:
+		RESULT = new FieldInit(s, d);
+	:}
+;
+
+method ::=
+	type:r IDENTIFIER:n LPAREN param_list:p RPAREN LBRACE RETURN
+		term:t SEMI RBRACE
+	{:
+		RESULT = new Method(r, n, p, t);
+	:}
+;
+
+term ::=
+	THIS
+	{:
+		RESULT = new /*ThisTerm()*/ VarTerm("this");
+	:}
+|
+	IDENTIFIER:i
+	{:
+		RESULT = new VarTerm(i);
+	:}
+|
+	term:t DOT IDENTIFIER:i
+	{:
+		RESULT = new FieldTerm(t, i);
+	:}
+|
+	term:t DOT IDENTIFIER:n LPAREN term_list:l RPAREN
+	{:
+		RESULT = new CallTerm(t, n, l);
+	:}
+|
+	NEW type:c LPAREN term_list:l RPAREN
+	{:
+		RESULT = new NewTerm(c, l);
+	:}
+|
+	// Note: I cheat here; getting lookahead right here is tough
+	LPAREN IDENTIFIER:c RPAREN term:t
+	{:
+		RESULT = new CastTerm(new Type(c), t);
+	:}
+	 %prec CAST
+|
+	LPAREN term:t RPAREN
+	{:
+		RESULT = t;
+	:}
+;
+
+/* Lists (which all follow the same basic form) */
+
+class_declaration_list ::=
+	class_declaration_list:l class_declaration:d
+	{:
+		l.addLast(d); RESULT = l;
+	:}
+|
+	{:
+		RESULT = new LinkedList();
+	:}
+;
+
+field_list ::=
+	field_list:l decl:f SEMI
+	{:
+		l.addLast(f); RESULT = l;
+	:}
+|
+	{:
+		RESULT = new LinkedList();
+	:}
+;
+
+method_list ::=
+	method_list:l method:m
+	{:
+		l.addLast(m); RESULT = l;
+	:}
+|
+	{:
+		RESULT = new LinkedList();
+	:}
+;
+
+ident_list ::=
+	IDENTIFIER:i ident_list_rest:l
+	{:
+		l.addFirst(i); RESULT = l;
+	:}
+|
+	{:
+		RESULT = new LinkedList();
+	:}
+;
+
+ident_list_rest ::=
+	ident_list_rest:l COMMA IDENTIFIER:i
+	{:
+		l.addLast(i); RESULT = l;
+	:}
+|
+	{:
+		RESULT = new LinkedList();
+	:}
+;
+
+field_init_list ::=
+	field_init_list:l field_init:f SEMI
+	{:
+		l.addLast(f); RESULT = l;
+	:}
+|
+	{:
+		RESULT = new LinkedList();
+	:}
+;
+
+param_list ::=
+	decl:p param_list_rest:l
+	{:
+		l.addFirst(p); RESULT = l;
+	:}
+|
+	{:
+		RESULT = new LinkedList();
+	:}
+;
+
+param_list_rest ::=
+	param_list_rest:l COMMA decl:p
+	{:
+		l.addLast(p); RESULT = l;
+	:}
+|
+	{:
+		RESULT = new LinkedList();
+	:}
+;
+
+term_list ::=
+	term:t term_list_rest:l
+	{:
+		l.addFirst(t); RESULT = l;
+	:}
+|
+	{:
+		RESULT = new LinkedList();
+	:}
+;
+
+term_list_rest ::=
+	term_list_rest:l COMMA term:t
+	{:
+		l.addLast(t); RESULT = l;
+	:}
+|
+	{:
+		RESULT = new LinkedList();
+	:}
+;

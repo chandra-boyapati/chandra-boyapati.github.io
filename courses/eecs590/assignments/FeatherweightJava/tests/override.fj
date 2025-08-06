@@ -1,0 +1,11 @@
+class A extends Object {
+	A() { super(); }
+	A method(A x) { return new A(); }
+}
+
+class B extends A {
+	B() { super(); }
+	B method(B x) { return new B(); }
+}
+
+new B().method(new B())

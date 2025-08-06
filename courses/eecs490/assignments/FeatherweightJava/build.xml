@@ -1,0 +1,201 @@
+<project name="FeatherweightJava" default="fj-jar">
+
+	<!-- What is this?! -->
+	<description>
+Build system for the FeatherweightJava type checker,
+for use in EECS 490 at the University of Michigan.
+	</description>
+	
+	<!-- Global properties -->
+	<property name="srcdir" location="${basedir}/src"/>
+	<property name="destdir" location="${basedir}/class"/>
+	<property name="libdir" location="${basedir}/lib"/>
+	<property name="docdir" location="${basedir}/doc"/>
+	
+	<!-- Standard classpath -->
+	<path id="standard.classpath">
+		<pathelement location="${destdir}"/>
+		<pathelement location="${libdir}/java_cup.jar"/>
+		<pathelement location="${libdir}/JFlex.jar"/>
+	</path>
+	
+	<!-- Build a CUP parser -->
+	<target
+		name="cup-parser"
+		depends="cup-parser-deps"
+		unless="cup.parser.up-to-date">
+
+		<java
+			classname="java_cup.Main"
+			fork="true"
+			dir="${parser.dir}"
+			failonerror="true">
+
+			<classpath refid="standard.classpath"/>
+			<arg value="-expect"/>
+			<arg value="${parser.expect}"/>
+			<arg value="-parser"/>
+			<arg value="${parser.parser}"/>
+			<arg value="-symbols"/>
+			<arg value="${parser.symbols}"/>
+			<arg value="${parser.input}"/>
+		</java>
+	</target>
+	
+	<!-- Dependency checking for CUP parsers -->
+	<target name="cup-parser-deps">
+		<dependset>
+			<srcfileset dir="${parser.dir}" includes="${parser.input}"/>
+			<targetfileset dir="${parser.dir}">
+				<include name="${parser.parser}.java"/>
+				<include name="${parser.symbols}.java"/>
+			</targetfileset>
+		</dependset>
+		<condition property="cup.parser.up-to-date">
+			<and>
+				<available file="${parser.dir}/${parser.parser}.java"/>
+				<available file="${parser.dir}/${parser.symbols}.java"/>
+			</and>
+		</condition>
+	</target>
+	
+	<!-- Build a JFlex lexer -->
+	<target
+		name="jflex-lexer"
+		depends="jflex-lexer-deps"
+		unless="jflex.lexer.up-to-date">
+
+		<java
+			classname="JFlex.Main"
+			fork="true"
+			dir="${lexer.dir}"
+			failonerror="true">
+
+			<classpath refid="standard.classpath"/>
+			<arg value="${lexer.input}"/>
+		</java>
+	</target>
+	
+	<!-- Dependency checking for JFlex lexers -->
+	<target name="jflex-lexer-deps">
+		<dependset>
+			<srcfileset dir="${lexer.dir}" includes="${lexer.input}"/>
+			<targetfileset dir="${lexer.dir}" includes="${lexer.output}"/>
+		</dependset>
+		<condition property="jflex.lexer.up-to-date">
+			<available file="${lexer.dir}/${lexer.output}"/>
+		</condition>
+	</target>
+	
+	<!-- Compile all the Java code -->
+	<target name="fj-compile">
+		<mkdir dir="${destdir}"/>
+		<javac
+			srcdir="${srcdir}"
+			destdir="${destdir}"
+			source="1.4"
+			includes="fj/**"
+			debug="yes">
+			<classpath refid="standard.classpath"/>
+		</javac>
+	</target>
+	
+	<!-- Build the FeatherweightJava system -->
+	<target name="fj">
+		<antcall target="jflex-lexer">
+			<param name="lexer.dir" value="${srcdir}/fj/parse"/>
+			<param name="lexer.input" value="fj.jflex"/>
+			<param name="lexer.output" value="Lexer.java"/>
+		</antcall>
+		<antcall target="cup-parser">
+			<param name="parser.dir" value="${srcdir}/fj/parse"/>
+			<param name="parser.parser" value="Parser"/>
+			<param name="parser.symbols" value="Symbols"/>
+			<param name="parser.expect" value="0"/>
+			<param name="parser.input" value="fj.cup"/>
+		</antcall>
+		<antcall target="fj-compile"/>
+	</target>
+
+<!--
+-->
+
+	<!-- Dependencies for unjarring -->
+	<target name="unjar-deps">
+		<condition property="unjar.up-to-date">
+			<available file="${destdir}/java_cup" type="dir"/>
+		</condition>
+	</target>
+
+	<!-- Unjar the java_cup runtime stuff -->
+	<target name="unjar" depends="unjar-deps" unless="unjar.up-to-date">
+		<unjar src="${libdir}/java_cup.jar" dest="class">
+			<patternset includes="java_cup/runtime/**"/>
+		</unjar>
+	</target>
+	
+	<!-- Make an archive for fun -->
+	<target
+		name="fj-jar"
+		depends="fj,unjar"
+		description="build FeatherweightJava into a jar file">
+		<jar
+			jarfile="fj.jar"
+			basedir="${destdir}"
+			includes="fj/**,java_cup/**">
+			<manifest>
+				<attribute name="Main-Class" value="fj.main.Main"/>
+			</manifest>
+		</jar>
+	</target>
+
+<!--
+-->
+
+	<!-- Make documentation -->
+	<target
+		name="doc"
+		depends="fj"
+		description="JavaDoc documentation">
+
+		<javadoc
+			packagenames="fj.*"
+			sourcepath="${srcdir}"
+			destdir="${docdir}"
+			access="private">
+			<classpath refid="standard.classpath"/>
+			<link href="http://java.sun.com/j2se/1.4.2/docs/api/"/>
+		</javadoc>
+	</target>
+
+	<!-- Make submission package -->
+	<target
+		name="submit"
+		description="create zipfile to submit assignment">
+
+		<zip destfile="submit.zip">
+			<zipfileset
+				file="src/fj/typecheck/TypeChecker.java"
+				prefix="src/fj/typecheck"/>
+			<zipfileset
+				file="src/fj/types/ClassTable.java"
+				prefix="src/fj/types"/>
+			<zipfileset dir="tests" prefix="tests"/>
+		</zip>
+	</target>
+
+	<!-- Clean up what we've compiled -->
+	<target
+		name="clean"
+		description="delete generated files">
+
+		<delete dir="${destdir}"/>
+		<delete dir="${docdir}"/>
+		<delete file="${basedir}/fj.jar"/>
+		<delete file="${basedir}/submit.zip"/>
+		<delete file="${srcdir}/fj/parse/Lexer.java"/>
+		<delete file="${srcdir}/fj/parse/Parser.java"/>
+		<delete file="${srcdir}/fj/parse/Symbols.java"/>
+	</target>
+		
+</project>
